@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/Projectile.gd" type="Script" id=1]
 [ext_resource path="res://assets/stuff.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "SpinProjectile"
 loop = true
 tracks/0/type = "value"
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 6.11887
 height = 10.9433
 
@@ -40,7 +40,7 @@ script = ExtResource( 1 )
 velocity = Vector2( 10000, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/SpinProjectile = SubResource( 2 )
+anims/SpinProjectile = SubResource( 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 collision_layer = 2
@@ -55,7 +55,7 @@ region_rect = Rect2( 160, 96, 16, 16 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 position = Vector2( -1, 0 )
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="DieTimer" type="Timer" parent="."]
 wait_time = 2.0

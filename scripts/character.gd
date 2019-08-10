@@ -3,11 +3,12 @@ extends Node2D
 export(String, FILE, '*tscn') var projectile_scene_path
 export(String, FILE, '*tscn') var plant_scene_path
 export var movement_speed = 50
-var velocity = Vector2(0,0)
+
+var projectile: Node2D = null
 
 var impulse = Vector2.ZERO
-var scaled = 100.0
-export var dampening = 3.0
+var impulse_unfolded = 100.0
+export var dampening = 300.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,8 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity.x = 0
-	velocity.y = 0
+	var velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed('left'):
 		velocity.x = -movement_speed
@@ -37,21 +37,26 @@ func _physics_process(delta):
 	
 	var movement = velocity * delta
 	
-	if scaled > 0:
-		scaled -= dampening
-		movement += impulse * (scaled / 100)
+	if impulse_unfolded > 0:
+		impulse_unfolded -= dampening * delta
+		movement += impulse * (impulse_unfolded / 100)
 	
 	$KinematicBody2D.move_and_slide(movement)
 
 func _input(event):
 	if event.is_action_released('shoot'):
-		impulse = Vector2(200, 500)
-		scaled = 100
-#		var projectile = load(projectile_scene_path).instance()
-#		add_child(projectile)
-#		projectile.global_position = $KinematicBody2D.global_position
+		projectile = load(projectile_scene_path).instance()
+		add_child(projectile)
+		projectile.global_position = $KinematicBody2D.global_position
 	if event.is_action_released('plant'):
-		var plant = load(plant_scene_path).instance()
-		add_child(plant)
-		plant.global_position = $KinematicBody2D.global_position
+		if projectile != null:
+			push_to_instance(projectile.get_node("KinematicBody2D"), 500)
+#		var plant = load(plant_scene_path).instance()
+#		add_child(plant)
+#		plant.global_position = $KinematicBody2D.global_position
 		
+func push_to_instance(instance: KinematicBody2D, speed: float):
+	var projectile_direction = (instance.global_position - $KinematicBody2D.global_position).normalized()
+	impulse_unfolded = 100
+	impulse = projectile_direction * speed
+	
