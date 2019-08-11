@@ -4,12 +4,12 @@
 [ext_resource path="res://assets/down_stand.png" type="Texture" id=2]
 [ext_resource path="res://assets/down_walk2.png" type="Texture" id=3]
 [ext_resource path="res://assets/down_walk1.png" type="Texture" id=4]
-[ext_resource path="res://assets/right_stand.png" type="Texture" id=5]
-[ext_resource path="res://assets/right_walk2.png" type="Texture" id=6]
-[ext_resource path="res://assets/right_walk1.png" type="Texture" id=7]
-[ext_resource path="res://assets/up_stand.png" type="Texture" id=8]
-[ext_resource path="res://assets/up_walk1.png" type="Texture" id=9]
-[ext_resource path="res://assets/up_walk2.png" type="Texture" id=10]
+[ext_resource path="res://assets/up_stand.png" type="Texture" id=5]
+[ext_resource path="res://assets/up_walk1.png" type="Texture" id=6]
+[ext_resource path="res://assets/up_walk2.png" type="Texture" id=7]
+[ext_resource path="res://assets/right_stand.png" type="Texture" id=8]
+[ext_resource path="res://assets/right_walk2.png" type="Texture" id=9]
+[ext_resource path="res://assets/right_walk1.png" type="Texture" id=10]
 [ext_resource path="res://assets/stuff.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -24,12 +24,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "walking",
+"name": "walking_up",
 "speed": 3.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "walking_up",
+"name": "walking",
 "speed": 3.0
 } ]
 
@@ -70,4 +70,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Gun/Sprite/GunRange"]
 scale = Vector2( 5.08, 2.48 )
 shape = SubResource( 3 )
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.75
 [connection signal="body_exited" from="KinematicBody2D/Gun/Sprite/GunRange" to="." method="_on_GunRange_body_exited"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

@@ -264,6 +264,10 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 script = ExtResource( 3 )
 
+[node name="ShakeTimer" type="Timer" parent="Camera2D"]
+wait_time = 0.25
+one_shot = true
+
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 861.993, 97.4966 )
 
@@ -272,3 +276,4 @@ position = Vector2( 887.976, 108.341 )
 
 [node name="Enemy3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 885.265, 82.1329 )
+[connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]
