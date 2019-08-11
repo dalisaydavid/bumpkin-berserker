@@ -246,8 +246,9 @@ format = 1
 tile_data = PoolIntArray( 262208, 1, 131072, 327744, 1, 65536, 393280, 1, 65536, 458816, 1, 65536, 524352, 1, 65536, 589888, 1, 65536, 655424, 1, 65536, 720960, 1, 65536, 786496, 1, 65536, 852032, 1, 65536, 917568, 1, 196608 )
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 79.9315, 260.128 )
+position = Vector2( 865.931, 154.128 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
+hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
 
 [node name="Camera2D" type="Camera2D" parent="."]

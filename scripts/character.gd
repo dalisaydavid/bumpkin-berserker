@@ -2,6 +2,7 @@ extends Node2D
 
 export(String, FILE, '*tscn') var projectile_scene_path
 export(String, FILE, '*tscn') var plant_scene_path
+export(String, FILE, '*tscn') var hook_scene_path
 export var movement_speed = 50
 
 var projectile: Node2D = null
@@ -53,8 +54,13 @@ func _input(event):
 		add_child(plant)
 		plant.global_position = $KinematicBody2D.global_position
 	if event.is_action_released('hook'):
-		if projectile != null:
-			push_to_instance(projectile.get_node("KinematicBody2D"), 500)
+		#if projectile != null:
+		#	push_to_instance(projectile.get_node("KinematicBody2D"), 500)
+		
+		var hook = load(hook_scene_path).instance()
+		hook.connect('hooked', self, 'push_to_instance', [hook.get_node('KinematicBody2D'), 500])
+		add_child(hook)
+		hook.global_position = $KinematicBody2D.global_position
 		
 func push_to_instance(instance: KinematicBody2D, speed: float):
 	var projectile_direction = (instance.global_position - $KinematicBody2D.global_position).normalized()
