@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/character.gd" type="Script" id=1]
 [ext_resource path="res://assets/down_stand.png" type="Texture" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://assets/right_stand.png" type="Texture" id=8]
 [ext_resource path="res://assets/right_walk2.png" type="Texture" id=9]
 [ext_resource path="res://assets/right_walk1.png" type="Texture" id=10]
-[ext_resource path="res://assets/stuff.png" type="Texture" id=11]
+[ext_resource path="res://assets/farmer_sheet.png" type="Texture" id=11]
+[ext_resource path="res://assets/stuff.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.48875, 7.30309 )
@@ -49,31 +50,37 @@ shape = SubResource( 1 )
 z_index = 100
 frames = SubResource( 2 )
 animation = "idle"
-frame = 2
+frame = 3
 speed_scale = 2.0
 playing = true
+
+[node name="Sprite2" type="Sprite" parent="KinematicBody2D"]
+visible = false
+texture = ExtResource( 11 )
+vframes = 8
+hframes = 3
 
 [node name="Gun" type="Node2D" parent="KinematicBody2D"]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D/Gun"]
+visible = false
 rotation = 0.785398
 scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 region_enabled = true
 region_rect = Rect2( 128, 128, 16, 16 )
 
-[node name="GunRange" type="Area2D" parent="KinematicBody2D/Gun/Sprite"]
-position = Vector2( 47.1405, -47.1404 )
-rotation = -0.785398
-scale = Vector2( 1.33333, 1.33333 )
+[node name="GunRange" type="Area2D" parent="KinematicBody2D/Gun"]
+position = Vector2( 50, 0 )
+scale = Vector2( 0.999998, 0.999998 )
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Gun/Sprite/GunRange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Gun/GunRange"]
 scale = Vector2( 5.08, 2.48 )
 shape = SubResource( 3 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.75
-[connection signal="body_exited" from="KinematicBody2D/Gun/Sprite/GunRange" to="." method="_on_GunRange_body_exited"]
+[connection signal="body_exited" from="KinematicBody2D/Gun/GunRange" to="." method="_on_GunRange_body_exited"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
