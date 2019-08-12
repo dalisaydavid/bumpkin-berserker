@@ -4,7 +4,6 @@ export(String, FILE, '*tscn') var projectile_scene_path
 export(String, FILE, '*tscn') var plant_scene_path
 export(String, FILE, '*tscn') var hook_scene_path
 export var movement_speed = 50
-
 var projectile: Node2D = null
 var hook: WeakRef = null
 
@@ -12,25 +11,33 @@ var impulse = Vector2.ZERO
 var impulse_unfolded = 100.0
 export var dampening = 300.0
 
+var can_shoot
+signal shot
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_physics_process(true)
+	
+	can_shoot = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	$KinematicBody2D/Gun.look_at(get_global_mouse_position())
+#	$KinematicBody2D/Gun/Sprite.rotate(45)
+	
 	var velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed('left'):
 		velocity.x = -movement_speed
 		$KinematicBody2D/Sprite.flip_h = true
-		$KinematicBody2D/Sprite.animation = 'walking'
+		#$KinematicBody2D/Sprite.animation = 'walking'
 	elif Input.is_action_pressed('right'):
 		velocity.x = movement_speed
 		$KinematicBody2D/Sprite.flip_h = false
-		$KinematicBody2D/Sprite.animation = 'walking'
+		#$KinematicBody2D/Sprite.animation = 'walking'
 	if Input.is_action_pressed('up'):
 		velocity.y = -movement_speed
-		$KinematicBody2D/Sprite.animation = 'walking_up'
+		#$KinematicBody2D/Sprite.animation = 'walking_up'
 	elif Input.is_action_pressed('down'):
 		velocity.y = movement_speed
 		$KinematicBody2D/Sprite.animation = 'idle'
@@ -45,11 +52,23 @@ func _physics_process(delta):
 	
 	$KinematicBody2D.move_and_slide(movement)
 
+func shoot(knockback_amount=100):
+	var bodies_in_gun_range = $KinematicBody2D/Gun/Sprite/GunRange.get_overlapping_bodies()
+	var enemies_in_gun_range = []
+	for body in bodies_in_gun_range:
+		if body.get_parent().is_in_group('enemies'):
+			body.get_parent().queue_free()
+	
+	push_away_from_position(get_global_mouse_position(), knockback_amount)
+	
+	emit_signal('shot')
+	can_shoot = false
+	$ReloadTimer.start()
+
 func _input(event):
 	if event.is_action_released('shoot'):
-		projectile = load(projectile_scene_path).instance()
-		add_child(projectile)
-		projectile.global_position = $KinematicBody2D.global_position
+		if can_shoot:
+			shoot()
 	if event.is_action_released('plant'):
 		var plant = load(plant_scene_path).instance()
 		add_child(plant)
@@ -62,10 +81,21 @@ func _input(event):
 
 func push_to_hook(hook: KinematicBody2D):
 	var distance = hook.global_position.distance_to($KinematicBody2D.global_position)
-	push_to_instance(hook, distance * 8)
+	push_to_position(hook.global_position, distance * 8)
 
-func push_to_instance(instance: KinematicBody2D, speed: float):
-	var projectile_direction = (instance.global_position - $KinematicBody2D.global_position).normalized()
+func push_to_position(target_position: Vector2, speed: float):
+	var projectile_direction = (target_position - $KinematicBody2D.global_position).normalized()
 	impulse_unfolded = 100
 	impulse = projectile_direction * speed
 	
+func push_away_from_position(target_position: Vector2, speed: float):
+	var projectile_direction = ($KinematicBody2D.global_position-target_position).normalized()
+	impulse_unfolded = 100
+	impulse = projectile_direction * speed
+
+func _on_GunRange_body_exited(body):
+	if body.get_parent().get_name() == 'Projectile':
+		body.get_parent().queue_free()
+
+func _on_ReloadTimer_timeout():
+	can_shoot = true	
