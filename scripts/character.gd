@@ -23,21 +23,20 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	$KinematicBody2D/Gun.look_at(get_global_mouse_position())
-#	$KinematicBody2D/Gun/Sprite.rotate(45)
 	
 	var velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed('left'):
 		velocity.x = -movement_speed
 		$KinematicBody2D/Sprite.flip_h = true
-		#$KinematicBody2D/Sprite.animation = 'walking'
+		$KinematicBody2D/Sprite.animation = 'walking'
 	elif Input.is_action_pressed('right'):
 		velocity.x = movement_speed
 		$KinematicBody2D/Sprite.flip_h = false
-		#$KinematicBody2D/Sprite.animation = 'walking'
+		$KinematicBody2D/Sprite.animation = 'walking'
 	if Input.is_action_pressed('up'):
 		velocity.y = -movement_speed
-		#$KinematicBody2D/Sprite.animation = 'walking_up'
+		$KinematicBody2D/Sprite.animation = 'walking_up'
 	elif Input.is_action_pressed('down'):
 		velocity.y = movement_speed
 		$KinematicBody2D/Sprite.animation = 'idle'
@@ -53,7 +52,7 @@ func _physics_process(delta):
 	$KinematicBody2D.move_and_slide(movement)
 
 func shoot(knockback_amount=100):
-	var bodies_in_gun_range = $KinematicBody2D/Gun/Sprite/GunRange.get_overlapping_bodies()
+	var bodies_in_gun_range = $KinematicBody2D/Gun/GunRange.get_overlapping_bodies()
 	var enemies_in_gun_range = []
 	for body in bodies_in_gun_range:
 		if body.get_parent().is_in_group('enemies'):
@@ -81,7 +80,7 @@ func _input(event):
 
 func push_to_hook(hook: KinematicBody2D):
 	var distance = hook.global_position.distance_to($KinematicBody2D.global_position)
-	push_to_position(hook.global_position, distance * 8)
+	push_to_position(hook.global_position, distance * 7)
 
 func push_to_position(target_position: Vector2, speed: float):
 	var projectile_direction = (target_position - $KinematicBody2D.global_position).normalized()
