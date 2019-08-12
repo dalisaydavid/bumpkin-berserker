@@ -1,6 +1,6 @@
 extends Node2D
 
-export var speed = 10000
+export var speed = 24000
 var direction
 var returning = false
 signal hooked
@@ -10,6 +10,7 @@ func _ready():
 	set_physics_process(true)
 	
 	direction = (get_global_mouse_position() - get_parent().get_node('KinematicBody2D').global_position).normalized()
+	$KinematicBody2D/Sprite.rotation = direction.angle()
 	
 	$ReturnTimer.connect('timeout', self, 'return_to_player')
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Hook.gd" type="Script" id=1]
-[ext_resource path="res://assets/hook.png" type="Texture" id=2]
+[ext_resource path="res://assets/hook-staight-intense.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Rope.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -26,6 +26,7 @@ shape = SubResource( 1 )
 script = ExtResource( 3 )
 
 [node name="ReturnTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 autostart = true
 [connection signal="body_entered" from="KinematicBody2D/Area2D" to="." method="_on_Area2D_body_entered"]

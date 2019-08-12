@@ -42,7 +42,9 @@ plant_scene_path = "res://scenes/Plant.tscn"
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="KinematicBody2D"]
+z_index = 100
 frames = SubResource( 2 )
 animation = "idle"
+frame = 2
 speed_scale = 2.0
 playing = true
