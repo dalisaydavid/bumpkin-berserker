@@ -39,10 +39,13 @@ func _ready():
 func _process(delta):
 	update()
 
-
 func _draw():
 	draw_rect(map_rect, Color.black)
 	draw_circle(instanceOffset(character), 6.0, Color.forestgreen)
+
+	for plant in get_tree().get_nodes_in_group('plant'):
+		if plant.pickable: 
+			draw_circle(instanceOffset(plant), 6.0, Color.purple)
 
 
 func instanceOffset(instance: Node2D) -> Vector2:

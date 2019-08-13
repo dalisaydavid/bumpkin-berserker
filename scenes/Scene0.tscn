@@ -1,4 +1,4 @@
-[gd_scene load_steps=213 format=2]
+[gd_scene load_steps=217 format=2]
 
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
@@ -2126,6 +2126,18 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 0/z_index = 300
 
+[sub_resource type="RectangleShape2D" id=208]
+extents = Vector2( 51.1764, 27.5919 )
+
+[sub_resource type="RectangleShape2D" id=209]
+extents = Vector2( 44.9369, 25.7463 )
+
+[sub_resource type="RectangleShape2D" id=210]
+extents = Vector2( 45.3222, 28.558 )
+
+[sub_resource type="RectangleShape2D" id=211]
+extents = Vector2( 48.29, 26.4276 )
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 31.7773, 26.7598 )
 
@@ -2152,7 +2164,7 @@ tile_data = PoolIntArray( 65576, 0, 983045, 65577, 0, 983044, 65578, 0, 1048581,
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
 light_mask = 3
-position = Vector2( 928.931, 148.128 )
+position = Vector2( 250.155, 252.749 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
@@ -2187,4 +2199,45 @@ position = Vector2( 885.265, 82.1329 )
 
 [node name="Minimap" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
+
+[node name="PlantingAreas" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="PlantingArea0" type="Area2D" parent="PlantingAreas" groups=[
+"planting_areas",
+]]
+editor/display_folded = true
+position = Vector2( 1.7773, 26.7598 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea0"]
+position = Vector2( 292.409, 168.377 )
+shape = SubResource( 208 )
+
+[node name="PlantingArea1" type="Area2D" parent="PlantingAreas" groups=[
+"planting_areas",
+]]
+editor/display_folded = true
+position = Vector2( 841.073, 197.476 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea1"]
+position = Vector2( -1, -2 )
+shape = SubResource( 209 )
+
+[node name="PlantingArea2" type="Area2D" parent="PlantingAreas" groups=[
+"planting_areas",
+]]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea2"]
+position = Vector2( 296.045, 485.652 )
+shape = SubResource( 210 )
+
+[node name="PlantingArea3" type="Area2D" parent="PlantingAreas" groups=[
+"planting_areas",
+]]
+editor/display_folded = true
+position = Vector2( 843.139, 484.984 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea3"]
+shape = SubResource( 211 )
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]

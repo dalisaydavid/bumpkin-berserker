@@ -31,7 +31,19 @@ func point_gun():
 		$KinematicBody2D/Gun/Sprite.flip_v = false
 	else:
 		$KinematicBody2D/Gun/Sprite.flip_v = true
-		
+
+func on_planting_area():
+	for planting_area in get_tree().get_nodes_in_group('planting_areas'):
+		if planting_area.overlaps_body($KinematicBody2D):
+			return true
+	
+	return false
+
+func plant():
+	var plant = load(plant_scene_path).instance()
+	add_child(plant)
+	plant.global_position = $KinematicBody2D.global_position
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	point_gun()
@@ -93,12 +105,12 @@ func shoot(knockback_amount=100):
 
 func _input(event):
 	if event.is_action_released('shoot'):
+		print('location: ', $KinematicBody2D.global_position)
 		if can_shoot:
 			shoot()
 	if event.is_action_released('plant'):
-		var plant = load(plant_scene_path).instance()
-		add_child(plant)
-		plant.global_position = $KinematicBody2D.global_position
+		if on_planting_area():
+			plant()
 	if event.is_action_released('hook') and (hook == null or !hook.get_ref()):
 		hook = weakref(load(hook_scene_path).instance())
 		hook.get_ref().connect('hooked', self, 'push_to_hook', [hook.get_ref().get_node('KinematicBody2D')])

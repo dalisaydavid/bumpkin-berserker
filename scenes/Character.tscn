@@ -8,15 +8,15 @@
 [ext_resource path="res://assets/farmer_movement/tile003.png" type="Texture" id=6]
 [ext_resource path="res://assets/farmer_movement/tile004.png" type="Texture" id=7]
 [ext_resource path="res://assets/farmer_movement/tile005.png" type="Texture" id=8]
-[ext_resource path="res://assets/farmer_movement/tile006.png" type="Texture" id=9]
-[ext_resource path="res://assets/farmer_movement/tile007.png" type="Texture" id=10]
-[ext_resource path="res://assets/farmer_movement/tile008.png" type="Texture" id=11]
-[ext_resource path="res://assets/farmer_movement/tile012.png" type="Texture" id=12]
-[ext_resource path="res://assets/farmer_movement/tile013.png" type="Texture" id=13]
-[ext_resource path="res://assets/farmer_movement/tile014.png" type="Texture" id=14]
-[ext_resource path="res://assets/farmer_movement/tile009.png" type="Texture" id=15]
-[ext_resource path="res://assets/farmer_movement/tile010.png" type="Texture" id=16]
-[ext_resource path="res://assets/farmer_movement/tile011.png" type="Texture" id=17]
+[ext_resource path="res://assets/farmer_movement/tile012.png" type="Texture" id=9]
+[ext_resource path="res://assets/farmer_movement/tile013.png" type="Texture" id=10]
+[ext_resource path="res://assets/farmer_movement/tile014.png" type="Texture" id=11]
+[ext_resource path="res://assets/farmer_movement/tile009.png" type="Texture" id=12]
+[ext_resource path="res://assets/farmer_movement/tile010.png" type="Texture" id=13]
+[ext_resource path="res://assets/farmer_movement/tile011.png" type="Texture" id=14]
+[ext_resource path="res://assets/farmer_movement/tile006.png" type="Texture" id=15]
+[ext_resource path="res://assets/farmer_movement/tile007.png" type="Texture" id=16]
+[ext_resource path="res://assets/farmer_movement/tile008.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.48875, 7.30309 )
@@ -36,6 +36,7 @@ spread = 73.4
 gravity = Vector3( 5, 0, 0 )
 initial_velocity = 150.0
 initial_velocity_random = 1.0
+angular_velocity = 9.41645e+012
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
@@ -59,17 +60,17 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "walking",
+"name": "walking_up",
 "speed": 3.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "walking_up",
+"name": "walking_up_diagonal",
 "speed": 3.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "walking_up_diagonal",
+"name": "walking",
 "speed": 3.0
 } ]
 
@@ -80,6 +81,7 @@ plant_scene_path = "res://scenes/Plant.tscn"
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+z_index = 101
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="KinematicBody2D"]
@@ -95,7 +97,7 @@ randomness = 1.0
 process_material = SubResource( 4 )
 
 [node name="Gun" type="Node2D" parent="KinematicBody2D"]
-position = Vector2( 0, 7 )
+position = Vector2( 0, 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D/Gun"]
 position = Vector2( 6, 0 )
@@ -120,10 +122,10 @@ shape = SubResource( 5 )
 position = Vector2( 14.6506, -2.27272 )
 
 [node name="Sprite" type="AnimatedSprite" parent="KinematicBody2D"]
+position = Vector2( 0, -7 )
 z_index = 100
 frames = SubResource( 6 )
 animation = "walking_diagonal"
-frame = 2
 speed_scale = 2.0
 playing = true
 
