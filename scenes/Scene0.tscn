@@ -422,7 +422,7 @@ movement_speed = 5000
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 9.40659, 2.04547 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.35, 0.35 )
 smoothing_enabled = true
 smoothing_speed = 2.5
 drag_margin_left = 0.1

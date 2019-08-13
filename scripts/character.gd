@@ -86,6 +86,9 @@ func shoot(knockback_amount=100):
 	
 	emit_signal('shot')
 	can_shoot = false
+	#$KinematicBody2D/Gun/GunRange/Particles2D.global_position = $KinematicBody2D/Gun/Position2D.global_position
+	#$KinematicBody2D/Gun/GunRange/Particles2D.rotation = $KinematicBody2D/Gun.rotation
+	$KinematicBody2D/Gun/GunRange/Particles2D.emitting = true
 	$ReloadTimer.start()
 
 func _input(event):
