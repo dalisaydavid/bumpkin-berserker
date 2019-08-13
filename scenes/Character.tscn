@@ -80,6 +80,7 @@ plant_scene_path = "res://scenes/Plant.tscn"
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+z_index = 101
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="KinematicBody2D"]
@@ -123,7 +124,7 @@ position = Vector2( 14.6506, -2.27272 )
 z_index = 100
 frames = SubResource( 6 )
 animation = "walking_diagonal"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 

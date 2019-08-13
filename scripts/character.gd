@@ -93,6 +93,7 @@ func shoot(knockback_amount=100):
 
 func _input(event):
 	if event.is_action_released('shoot'):
+		print('location: ', $KinematicBody2D.global_position)
 		if can_shoot:
 			shoot()
 	if event.is_action_released('plant'):
