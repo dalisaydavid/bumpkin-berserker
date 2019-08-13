@@ -20,30 +20,54 @@ func _ready():
 	
 	can_shoot = true
 
+func point_gun():
+	$KinematicBody2D/Gun.look_at(get_global_mouse_position())
+	if $KinematicBody2D.global_position.y > get_global_mouse_position().y:
+		$KinematicBody2D/Gun/Sprite.z_index = 100
+	else:
+		$KinematicBody2D/Gun/Sprite.z_index = 101
+		
+	if $KinematicBody2D/Gun.global_position.x < get_global_mouse_position().x:
+		$KinematicBody2D/Gun/Sprite.flip_v = false
+	else:
+		$KinematicBody2D/Gun/Sprite.flip_v = true
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	$KinematicBody2D/Gun.look_at(get_global_mouse_position())
+	point_gun()
 	
 	var velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed('left'):
 		velocity.x = -movement_speed
 		$KinematicBody2D/Sprite.flip_h = true
-		$KinematicBody2D/Sprite.animation = 'walking'
+		if Input.is_action_pressed('up'):
+			velocity.y = -movement_speed
+			$KinematicBody2D/Sprite.animation = 'walking_up_diagonal'
+		elif Input.is_action_pressed('down'):
+			velocity.y = movement_speed
+			$KinematicBody2D/Sprite.animation = 'walking_diagonal'
+		else:
+			$KinematicBody2D/Sprite.animation = 'walking'
 	elif Input.is_action_pressed('right'):
 		velocity.x = movement_speed
 		$KinematicBody2D/Sprite.flip_h = false
-		$KinematicBody2D/Sprite.animation = 'walking'
-	if Input.is_action_pressed('up'):
+		if Input.is_action_pressed('up'):
+			velocity.y = -movement_speed
+			$KinematicBody2D/Sprite.animation = 'walking_up_diagonal'
+		elif Input.is_action_pressed('down'):
+			velocity.y = movement_speed
+			$KinematicBody2D/Sprite.animation = 'walking_diagonal'
+		else:
+			$KinematicBody2D/Sprite.animation = 'walking'
+	elif Input.is_action_pressed('up'):
 		velocity.y = -movement_speed
 		$KinematicBody2D/Sprite.animation = 'walking_up'
 	elif Input.is_action_pressed('down'):
 		velocity.y = movement_speed
 		$KinematicBody2D/Sprite.animation = 'idle'
-	#else:
-	#	$KinematicBody2D/Sprite.animation = 'idle'
 	
-	var movement = velocity * delta
+	var movement = velocity.normalized() * delta * movement_speed
 	
 	if impulse_unfolded > 0:
 		impulse_unfolded -= dampening * delta
@@ -62,6 +86,9 @@ func shoot(knockback_amount=100):
 	
 	emit_signal('shot')
 	can_shoot = false
+	#$KinematicBody2D/Gun/GunRange/Particles2D.global_position = $KinematicBody2D/Gun/Position2D.global_position
+	#$KinematicBody2D/Gun/GunRange/Particles2D.rotation = $KinematicBody2D/Gun.rotation
+	$KinematicBody2D/Gun/GunRange/Particles2D.emitting = true
 	$ReloadTimer.start()
 
 func _input(event):
