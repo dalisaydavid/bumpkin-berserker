@@ -2459,6 +2459,6 @@ position = Vector2( 843.139, 484.984 )
 position = Vector2( -3, -2 )
 shape = SubResource( 232 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]

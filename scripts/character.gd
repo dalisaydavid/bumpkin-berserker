@@ -111,6 +111,7 @@ func shoot(knockback_amount=100):
 	push_away_from_position(get_global_mouse_position(), knockback_amount)
 	
 	emit_signal('shot')
+	$KinematicBody2D/Gun/ShotgunSound.play()
 	can_shoot = false
 	$KinematicBody2D/Particles2D.emitting = true
 	$KinematicBody2D/Particles2D.global_position = $KinematicBody2D/Gun/Position2D.global_position
