@@ -2311,19 +2311,18 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 0/z_index = 1
 
 [sub_resource type="RectangleShape2D" id=229]
-extents = Vector2( 43.5745, 24.4003 )
+extents = Vector2( 43.5745, 28.3987 )
 
 [sub_resource type="RectangleShape2D" id=230]
-extents = Vector2( 44.4523, 24.6788 )
+extents = Vector2( 39.5697, 26.4992 )
 
 [sub_resource type="RectangleShape2D" id=231]
-extents = Vector2( 44.5549, 23.5311 )
+extents = Vector2( 40.4385, 23.5311 )
 
 [sub_resource type="RectangleShape2D" id=232]
-extents = Vector2( 43.6826, 23.521 )
+extents = Vector2( 39.9283, 23.8705 )
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( 31.7773, 26.7598 )
 script = ExtResource( 1 )
 
 [node name="TileMapTerrain" type="TileMap" parent="."]
@@ -2428,18 +2427,20 @@ script = ExtResource( 6 )
 "planting_areas",
 ]]
 position = Vector2( 1.7773, 26.7598 )
+scale = Vector2( 0.896426, 0.833585 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea0"]
-position = Vector2( 293.409, 168.377 )
+position = Vector2( 292.892, 168.933 )
 shape = SubResource( 229 )
 
 [node name="PlantingArea1" type="Area2D" parent="PlantingAreas" groups=[
 "planting_areas",
 ]]
 position = Vector2( 841.073, 197.476 )
+scale = Vector2( 1.03344, 0.880242 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea1"]
-position = Vector2( -1, -2 )
+position = Vector2( -30.7902, -33.8642 )
 shape = SubResource( 230 )
 
 [node name="PlantingArea2" type="Area2D" parent="PlantingAreas" groups=[
@@ -2447,7 +2448,7 @@ shape = SubResource( 230 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea2"]
-position = Vector2( 296.045, 482.652 )
+position = Vector2( 265.004, 455.781 )
 shape = SubResource( 231 )
 
 [node name="PlantingArea3" type="Area2D" parent="PlantingAreas" groups=[
@@ -2456,7 +2457,7 @@ shape = SubResource( 231 )
 position = Vector2( 843.139, 484.984 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea3"]
-position = Vector2( -3, -2 )
+position = Vector2( -34.9672, -29.3343 )
 shape = SubResource( 232 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
