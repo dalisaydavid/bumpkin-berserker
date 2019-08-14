@@ -1,15 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/gray-aliens.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.69844, 5.05128 )
+extents = Vector2( 3.31841, 3.01437 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dead"
+length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/path = NodePath("../Enemy/KinematicBody2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +26,7 @@ tracks/0/keys = {
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/path = NodePath("../Enemy/KinematicBody2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,7 +43,7 @@ resource_name = "walking_down_diagonal"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/path = NodePath("../Enemy/KinematicBody2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -59,7 +60,7 @@ resource_name = "walking_side"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/path = NodePath("../Enemy/KinematicBody2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -71,12 +72,29 @@ tracks/0/keys = {
 "values": [ 14, 15, 14, 16 ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "walking_up"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Enemy/KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 28, 30 ]
+}
+
 [sub_resource type="Animation" id=6]
 resource_name = "walking_up_diagonal"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/path = NodePath("../Enemy/KinematicBody2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -101,11 +119,9 @@ collision_mask = 2
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 7
-frame = 21
 region_rect = Rect2( 96, 0, 16, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-visible = false
 position = Vector2( 0, 5.24974 )
 shape = SubResource( 1 )
 
@@ -114,4 +130,6 @@ anims/Dead = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/walking_down_diagonal = SubResource( 4 )
 anims/walking_side = SubResource( 5 )
+anims/walking_up = SubResource( 7 )
 anims/walking_up_diagonal = SubResource( 6 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
