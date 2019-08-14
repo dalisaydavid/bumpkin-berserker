@@ -25,7 +25,7 @@ func _physics_process(delta):
 	$KinematicBody2D.move_and_slide(direction*delta*speed)
 
 func _on_Area2D_body_entered(body):
-	if body.get_name() == 'TileMapBoundaries':
+	if body.is_in_group("TileMapHookable"):
 		speed = 0
 		returning = true
 		
