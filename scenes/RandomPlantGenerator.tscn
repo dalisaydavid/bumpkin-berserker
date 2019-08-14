@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/RandomPlantGenerator.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 60.3445, 49.3743 )
+
+[node name="RandomPlantGenerator" type="Area2D"]
+position = Vector2( 746.683, 216.662 )
+script = ExtResource( 1 )
+plant_scene_path = "res://scenes/Plant.tscn"
+number_of_random_plants = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
