@@ -131,5 +131,9 @@ playing = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.75
+
+[node name="CropNumberTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
 [connection signal="body_exited" from="KinematicBody2D/Gun/GunRange" to="." method="_on_GunRange_body_exited"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

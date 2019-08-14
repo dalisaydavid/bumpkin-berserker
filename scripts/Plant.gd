@@ -30,7 +30,7 @@ func _ready():
 	var random_plant_sprite = [TOMATO, STRAWBERRY, POTATO, LETTUCE, EGGPLANT, GREEN_GRAPE, TURNIP, PUMPKIN, CARROT, CAULIFLOWER, WATERMELON, RED_GRAPE][randi()%12]
 	for i in range(4):
 		get_node('Sprite'+str(i)).region_rect.position = Vector2(random_plant_sprite.position.x+(16*i), random_plant_sprite.position.y)
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -45,8 +45,23 @@ func grow_plant():
 	plant_index += 1
 	get_node('Sprite' + str(plant_index)).visible = true
 	
+	
+	var current_sprite = get_node('Sprite'+str(plant_index))
+	$PickEffect.interpolate_property(
+		current_sprite,
+		'scale',
+		current_sprite.get_scale(),
+		Vector2(2.0, 2.0),
+		0.3,
+		Tween.TRANS_CUBIC,
+		Tween.EASE_OUT 
+	)
 
 func _on_PickArea_body_entered(body):
 	if body.get_parent().get_name() == 'Character':
 		if pickable:
-			queue_free()
+			get_node('Sprite'+str(plant_index)).z_index = 200
+			$PickEffect.start()
+
+func _on_PickEffect_tween_completed(object, key):
+	queue_free()
