@@ -19,6 +19,10 @@ config/name="Bumpkin Beserker"
 run/main_scene="res://scenes/TitleScreen.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+mouse_cursor/custom_image="res://assets/cursor.png"
+
 [input]
 
 left={
