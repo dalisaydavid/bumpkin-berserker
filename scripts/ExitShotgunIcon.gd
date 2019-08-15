@@ -18,3 +18,8 @@ func _on_ExitGameButton_focus_entered():
 
 func _on_ExitGameButton_focus_exited():
 	visible = false
+
+
+func _on_ExitGameButton_mouse_entered():
+	get_parent().grab_focus()
+	visible = true

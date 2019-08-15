@@ -18,3 +18,7 @@ func _on_NewGameButton_focus_entered():
 
 func _on_NewGameButton_focus_exited():
 	visible = false
+
+func _on_NewGameButton_mouse_entered():
+	get_parent().grab_focus()
+	visible = true
