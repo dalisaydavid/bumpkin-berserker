@@ -131,7 +131,7 @@ position = Vector2( 0, -7 )
 z_index = 100
 frames = SubResource( 6 )
 animation = "walking_diagonal"
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 
