@@ -12,7 +12,6 @@ var scene_size: Vector2
 var map_size: Vector2
 var map_rect: Rect2
 
-
 func _ready():
 	var terrain = get_parent().get_parent().get_node("TileMapTerrain")
 	var rect = terrain.get_used_rect()
@@ -35,7 +34,6 @@ func _ready():
 	
 	modulate.a = alpha
 
-
 func _process(delta):
 	update()
 
@@ -46,7 +44,6 @@ func _draw():
 	for plant in get_tree().get_nodes_in_group('plant'):
 		if plant.pickable: 
 			draw_circle(instanceOffset(plant), 6.0, Color.purple)
-
 
 func instanceOffset(instance: Node2D) -> Vector2:
 	var x = ((scene_size.x - instance.global_position.x) / scene_size.x) * map_size.x
