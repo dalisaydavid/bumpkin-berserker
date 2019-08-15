@@ -11,6 +11,9 @@ var crops_available_count = 15
 var projectile: Node2D = null
 var hook: WeakRef = null
 
+var big_cursor = load("res://assets/big_cursor.png")
+var small_cursor = load("res://assets/small_cursor.png")
+
 var impulse = Vector2.ZERO
 var impulse_unfolded = 100.0
 export var dampening = 300.0
@@ -113,6 +116,7 @@ func shoot(knockback_amount=100):
 	emit_signal('shot')
 	$KinematicBody2D/Gun/ShotgunSound.play()
 	can_shoot = false
+	Input.set_custom_mouse_cursor(big_cursor)
 	$KinematicBody2D/Particles2D.emitting = true
 	$KinematicBody2D/Particles2D.global_position = $KinematicBody2D/Gun/Position2D.global_position
 	$KinematicBody2D/Particles2D.rotation = $KinematicBody2D/Gun.rotation
@@ -152,3 +156,4 @@ func _on_GunRange_body_exited(body):
 
 func _on_ReloadTimer_timeout():
 	can_shoot = true	
+	Input.set_custom_mouse_cursor(small_cursor)

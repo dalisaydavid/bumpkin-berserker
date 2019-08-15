@@ -1,4 +1,4 @@
-[gd_scene load_steps=240 format=2]
+[gd_scene load_steps=241 format=2]
 
 [ext_resource path="res://scripts/bgmusic.gd" type="Script" id=1]
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/Minimap.gd" type="Script" id=6]
 [ext_resource path="res://sounds/The Call - Epic Emotional Piano Music - RF.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scenes/cursor.gd" type="Script" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "ff_master_tile_sheet.png 0"
@@ -2462,4 +2463,7 @@ shape = SubResource( 232 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+
+[node name="cursor" type="Node2D" parent="."]
+script = ExtResource( 8 )
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]
