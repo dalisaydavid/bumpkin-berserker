@@ -9,6 +9,8 @@ signal hooked
 func _ready():
 	set_physics_process(true)
 	
+	$KinematicBody2D/WooshSound.play()
+	
 	direction = (get_global_mouse_position() - get_parent().get_node('KinematicBody2D').global_position).normalized()
 	$KinematicBody2D/Sprite.rotation = direction.angle()
 	
@@ -30,6 +32,8 @@ func _on_Area2D_body_entered(body):
 		returning = true
 		
 		emit_signal('hooked')
+		
+		$KinematicBody2D/HookLandSound.play()
 		
 		var timer = Timer.new()
 		timer.set_wait_time(0.5)
