@@ -15,7 +15,7 @@ var map_rect: Rect2
 
 # TODO: everything is a bit off-centered in the minimap, fix dat
 func _ready():
-	var terrain = get_parent().get_parent().get_node("TileMapTerrain")
+	var terrain = get_parent().get_parent().get_node("Navigation2D/TileMapTerrain")
 	var rect = terrain.get_used_rect()
 	
 	var scene_width = rect.size.x * tile_size

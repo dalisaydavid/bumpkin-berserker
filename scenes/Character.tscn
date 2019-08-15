@@ -37,7 +37,7 @@ spread = 73.4
 gravity = Vector3( 5, 0, 0 )
 initial_velocity = 150.0
 initial_velocity_random = 1.0
-angular_velocity = 9.41645e+012
+angular_velocity = 9.41645e+12
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
@@ -80,6 +80,7 @@ script = ExtResource( 1 )
 plant_scene_path = "res://scenes/Plant.tscn"
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 z_index = 101
@@ -131,7 +132,7 @@ position = Vector2( 0, -7 )
 z_index = 100
 frames = SubResource( 6 )
 animation = "walking_diagonal"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
 
