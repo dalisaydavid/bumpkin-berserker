@@ -36,15 +36,16 @@ func _ready():
 #	pass
 
 func grow_plant():
-	if plant_index >= max_plant_index-1:
-		$GrowTimer.stop() 
-		pickable = true
+	if plant_index == max_plant_index-1:
 		return
 		
 	get_node('Sprite' + str(plant_index)).visible = false
 	plant_index += 1
 	get_node('Sprite' + str(plant_index)).visible = true
 	
+	if plant_index == max_plant_index-1:
+		$GrowTimer.stop() 
+		pickable = true
 	
 	var current_sprite = get_node('Sprite'+str(plant_index))
 	$PickEffect.interpolate_property(

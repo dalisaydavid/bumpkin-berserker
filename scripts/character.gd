@@ -11,6 +11,9 @@ var crops_available_count = 15
 var projectile: Node2D = null
 var hook: WeakRef = null
 
+var big_cursor = load("res://assets/big_cursor.png")
+var small_cursor = load("res://assets/small_cursor.png")
+
 var impulse = Vector2.ZERO
 var impulse_unfolded = 100.0
 export var dampening = 300.0
@@ -38,27 +41,6 @@ func point_gun():
 	else:
 		$KinematicBody2D/Gun/Sprite.flip_v = true
 
-func can_plant():
-	return on_planting_area() and crops_available_count > 0
-
-func on_planting_area():
-	for planting_area in get_tree().get_nodes_in_group('planting_areas'):
-		if planting_area.overlaps_body($KinematicBody2D):
-			return true
-	
-	return false
-	
-func increase_available_crops(amount):
-	if crops_available_count < max_crop_count:
-		crops_available_count += amount
-
-func plant():
-	var plant = load(plant_scene_path).instance()
-	add_child(plant)
-	plant.global_position = $KinematicBody2D.global_position
-	crops_available_count -= 1
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	point_gun()
 	
@@ -113,6 +95,7 @@ func shoot(knockback_amount=100):
 	emit_signal('shot')
 	$KinematicBody2D/Gun/ShotgunSound.play()
 	can_shoot = false
+	Input.set_custom_mouse_cursor(big_cursor)
 	$KinematicBody2D/Particles2D.emitting = true
 	$KinematicBody2D/Particles2D.global_position = $KinematicBody2D/Gun/Position2D.global_position
 	$KinematicBody2D/Particles2D.rotation = $KinematicBody2D/Gun.rotation
@@ -123,9 +106,6 @@ func _input(event):
 		print('location: ', $KinematicBody2D.global_position)
 		if can_shoot:
 			shoot()
-	if event.is_action_released('plant'):
-		if can_plant():
-			plant()
 	if event.is_action_released('hook') and (hook == null or !hook.get_ref()):
 		hook = weakref(load(hook_scene_path).instance())
 		hook.get_ref().connect('hooked', self, 'push_to_hook', [hook.get_ref().get_node('KinematicBody2D')])
@@ -152,3 +132,4 @@ func _on_GunRange_body_exited(body):
 
 func _on_ReloadTimer_timeout():
 	can_shoot = true	
+	Input.set_custom_mouse_cursor(small_cursor)

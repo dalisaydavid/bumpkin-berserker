@@ -6,13 +6,14 @@ export var target_width = 160
 export var alpha = 0.6
 
 var character: Node2D
+var plots
 
 var origin: Vector2
 var scene_size: Vector2
 var map_size: Vector2
 var map_rect: Rect2
 
-
+# TODO: everything is a bit off-centered in the minimap, fix dat
 func _ready():
 	var terrain = get_parent().get_parent().get_node("TileMapTerrain")
 	var rect = terrain.get_used_rect()
@@ -27,6 +28,7 @@ func _ready():
 	
 	var root_node = get_parent().get_parent()
 	character = root_node.get_node("Character").get_node("KinematicBody2D")
+	plots = root_node.get_node("PlantingAreas").get_children()
 	
 	origin = Vector2(offset, offset)
 	scene_size = Vector2(scene_width, scene_height)
@@ -35,20 +37,27 @@ func _ready():
 	
 	modulate.a = alpha
 
-
 func _process(delta):
 	update()
 
 func _draw():
 	draw_rect(map_rect, Color.black)
-	draw_circle(instanceOffset(character), 6.0, Color.forestgreen)
+	
+	for plot in plots:
+		var rect = Rect2(instance_offset(plot), Vector2(6, 6)) # TODO: pull this into constructor
+		match plot.farm_state:
+			plot.State.empty:
+				draw_rect(rect, Color.yellow, false)
+			plot.State.growing:
+				draw_rect(rect, Color.yellow, true)
+			plot.State.done:
+				draw_rect(rect, Color.purple, true)
+			plot.State.done:
+				draw_rect(rect, Color.rosybrown, true)
+	
+	draw_circle(instance_offset(character), 6.0, Color.forestgreen)
 
-	for plant in get_tree().get_nodes_in_group('plant'):
-		if plant.pickable: 
-			draw_circle(instanceOffset(plant), 6.0, Color.purple)
-
-
-func instanceOffset(instance: Node2D) -> Vector2:
+func instance_offset(instance: Node2D) -> Vector2:
 	var x = ((scene_size.x - instance.global_position.x) / scene_size.x) * map_size.x
 	var y = ((scene_size.y - instance.global_position.y) / scene_size.y) * map_size.y
 	return origin + map_size - Vector2(x, y)
