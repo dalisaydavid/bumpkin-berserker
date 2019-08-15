@@ -2392,7 +2392,7 @@ hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 9.40659, 2.04547 )
+position = Vector2( 315.397, 282.411 )
 current = true
 zoom = Vector2( 0.35, 0.35 )
 smoothing_enabled = true

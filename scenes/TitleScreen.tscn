@@ -1,16 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://sounds/layered-gunshot-7_A_minor.wav" type="AudioStream" id=2]
 [ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/bumpkinberserkerlogo.png" type="Texture" id=4]
-[ext_resource path="res://scenes/buttons/NewGameButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/shotgun_menu_icon.png" type="Texture" id=6]
-[ext_resource path="res://scripts/NewShotgunIcon.gd" type="Script" id=7]
-[ext_resource path="res://scenes/buttons/ExitGameButton.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/ExitShotgunIcon.gd" type="Script" id=9]
-[ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=10]
-[ext_resource path="res://scenes/FadeIn.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/buttons/NewGameButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/shotgun_menu_icon.png" type="Texture" id=5]
+[ext_resource path="res://scripts/NewShotgunIcon.gd" type="Script" id=6]
+[ext_resource path="res://scenes/buttons/ExitGameButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/ExitShotgunIcon.gd" type="Script" id=8]
+[ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://scenes/FadeIn.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
@@ -18,7 +17,7 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -42,13 +41,6 @@ margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "Bumpking Berserker"
 
-[node name="Logo" type="TextureRect" parent="Menu"]
-visible = false
-margin_right = 784.0
-margin_bottom = 100.0
-texture = ExtResource( 4 )
-stretch_mode = 4
-
 [node name="CenterRow" type="HBoxContainer" parent="Menu"]
 margin_top = 61.0
 margin_right = 789.0
@@ -63,39 +55,35 @@ size_flags_vertical = 3
 custom_constants/separation = 35
 alignment = 1
 
-[node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 5 )]
+[node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 4 )]
 margin_top = 107.0
 margin_right = 392.0
 margin_bottom = 167.0
-scene_to_load = "res://scenes/Scene0.tscn"
+scene_to_load = "res://scenes/TutorialMove.tscn"
 
 [node name="NewShotgunIcon" type="TextureRect" parent="Menu/CenterRow/Buttons/NewGameButton"]
 margin_left = 337.105
 margin_top = 10.2105
 margin_right = 386.105
 margin_bottom = 41.2105
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 expand = true
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
-[node name="Tween" type="Tween" parent="Menu/CenterRow/Buttons/NewGameButton/NewShotgunIcon"]
-
-[node name="ExitGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 8 )]
+[node name="ExitGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 7 )]
 margin_top = 202.0
 margin_right = 392.0
 margin_bottom = 262.0
 
 [node name="ExitShotgunIcon" type="TextureRect" parent="Menu/CenterRow/Buttons/ExitGameButton"]
 visible = false
-margin_left = 305.0
-margin_top = 11.0
-margin_right = 353.0
-margin_bottom = 44.0
-texture = ExtResource( 6 )
+margin_left = 298.374
+margin_top = 12.2914
+margin_right = 346.374
+margin_bottom = 43.2914
+texture = ExtResource( 5 )
 expand = true
-script = ExtResource( 9 )
-
-[node name="Tween" type="Tween" parent="Menu/CenterRow/Buttons/ExitGameButton/ExitShotgunIcon"]
+script = ExtResource( 8 )
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
 margin_left = 396.0
@@ -119,14 +107,12 @@ custom_fonts/font = SubResource( 2 )
 text = "Version 1.0  Team Iron III"
 align = 2
 
-[node name="FadeIn" parent="." instance=ExtResource( 11 )]
+[node name="FadeIn" parent="." instance=ExtResource( 10 )]
 visible = false
 [connection signal="focus_entered" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton/NewShotgunIcon" method="_on_NewGameButton_focus_entered"]
 [connection signal="focus_exited" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton/NewShotgunIcon" method="_on_NewGameButton_focus_exited"]
 [connection signal="mouse_entered" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton/NewShotgunIcon" method="_on_NewGameButton_mouse_entered"]
-[connection signal="mouse_exited" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton/NewShotgunIcon" method="_on_NewGameButton_mouse_exited"]
 [connection signal="focus_entered" from="Menu/CenterRow/Buttons/ExitGameButton" to="Menu/CenterRow/Buttons/ExitGameButton/ExitShotgunIcon" method="_on_ExitGameButton_focus_entered"]
 [connection signal="focus_exited" from="Menu/CenterRow/Buttons/ExitGameButton" to="Menu/CenterRow/Buttons/ExitGameButton/ExitShotgunIcon" method="_on_ExitGameButton_focus_exited"]
 [connection signal="mouse_entered" from="Menu/CenterRow/Buttons/ExitGameButton" to="Menu/CenterRow/Buttons/ExitGameButton/ExitShotgunIcon" method="_on_ExitGameButton_mouse_entered"]
-[connection signal="mouse_exited" from="Menu/CenterRow/Buttons/ExitGameButton" to="Menu/CenterRow/Buttons/ExitGameButton/ExitShotgunIcon" method="_on_ExitGameButton_mouse_exited"]
 [connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]
