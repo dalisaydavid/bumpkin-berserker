@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/TutorialEnjoy.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=2]
@@ -9,7 +9,9 @@
 size = 56
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=3]
 size = 46
 font_data = ExtResource( 4 )
 
@@ -60,7 +62,8 @@ margin_bottom = 53.0
 rect_min_size = Vector2( 0, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "  Start Game"
 scene_to_load = "res://scenes/Scene0.tscn"
 
