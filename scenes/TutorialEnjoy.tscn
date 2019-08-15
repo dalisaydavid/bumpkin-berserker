@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scenes/TutorialEnjoy.gd" type="Script" id=1]
+[ext_resource path="res://TutorialEnjoy.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/buttons/MenuButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://sounds/layered-gunshot-7_A_minor.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
@@ -70,4 +71,8 @@ scene_to_load = "res://scenes/Scene0.tscn"
 [node name="Bounce" type="Tween" parent="TutorialArea/CenterBox/VBoxContainer/RightButton"]
 repeat = true
 playback/repeat = true
+
+[node name="ShotgunSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
 [connection signal="pressed" from="TutorialArea/CenterBox/VBoxContainer/RightButton" to="." method="_on_RightButton_pressed"]

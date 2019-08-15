@@ -4,10 +4,11 @@ onready var left_effect = get_node("LeftButton/Bounce")
 onready var left_sprite = get_node("LeftButton")	
 onready var right_effect = get_node("RightButton/Bounce")
 onready var right_sprite = get_node("RightButton")
-
+var arrow = load("res://assets/small_cursor.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_custom_mouse_cursor(arrow)
 	right_sprite.grab_focus()
 	_start_tweens()
 
