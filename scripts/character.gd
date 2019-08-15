@@ -38,27 +38,6 @@ func point_gun():
 	else:
 		$KinematicBody2D/Gun/Sprite.flip_v = true
 
-func can_plant():
-	return on_planting_area() and crops_available_count > 0
-
-func on_planting_area():
-	for planting_area in get_tree().get_nodes_in_group('planting_areas'):
-		if planting_area.overlaps_body($KinematicBody2D):
-			return true
-	
-	return false
-	
-func increase_available_crops(amount):
-	if crops_available_count < max_crop_count:
-		crops_available_count += amount
-
-func plant():
-	var plant = load(plant_scene_path).instance()
-	add_child(plant)
-	plant.global_position = $KinematicBody2D.global_position
-	crops_available_count -= 1
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	point_gun()
 	
@@ -123,9 +102,6 @@ func _input(event):
 		print('location: ', $KinematicBody2D.global_position)
 		if can_shoot:
 			shoot()
-	if event.is_action_released('plant'):
-		if can_plant():
-			plant()
 	if event.is_action_released('hook') and (hook == null or !hook.get_ref()):
 		hook = weakref(load(hook_scene_path).instance())
 		hook.get_ref().connect('hooked', self, 'push_to_hook', [hook.get_ref().get_node('KinematicBody2D')])

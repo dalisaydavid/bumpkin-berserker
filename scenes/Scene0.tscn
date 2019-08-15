@@ -1,4 +1,4 @@
-[gd_scene load_steps=240 format=2]
+[gd_scene load_steps=237 format=2]
 
 [ext_resource path="res://scripts/bgmusic.gd" type="Script" id=1]
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/Minimap.gd" type="Script" id=6]
-[ext_resource path="res://sounds/The Call - Epic Emotional Piano Music - RF.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sounds/The Call - Epic Emotional Piano Music - RF.ogg" type="AudioStream" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "ff_master_tile_sheet.png 0"
@@ -2310,18 +2311,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 0/z_index = 1
 
-[sub_resource type="RectangleShape2D" id=229]
-extents = Vector2( 43.5745, 28.3987 )
-
-[sub_resource type="RectangleShape2D" id=230]
-extents = Vector2( 39.5697, 26.4992 )
-
-[sub_resource type="RectangleShape2D" id=231]
-extents = Vector2( 40.4385, 23.5311 )
-
-[sub_resource type="RectangleShape2D" id=232]
-extents = Vector2( 39.9283, 23.8705 )
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -2423,43 +2412,18 @@ script = ExtResource( 6 )
 
 [node name="PlantingAreas" type="Node" parent="."]
 
-[node name="PlantingArea0" type="Area2D" parent="PlantingAreas" groups=[
-"planting_areas",
-]]
-position = Vector2( 1.7773, 26.7598 )
-scale = Vector2( 0.896426, 0.833585 )
+[node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 7 )]
+position = Vector2( 263.697, 167.512 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea0"]
-position = Vector2( 292.892, 168.933 )
-shape = SubResource( 229 )
+[node name="PlantingArea2" parent="PlantingAreas" instance=ExtResource( 7 )]
+position = Vector2( 808.381, 168.052 )
 
-[node name="PlantingArea1" type="Area2D" parent="PlantingAreas" groups=[
-"planting_areas",
-]]
-position = Vector2( 841.073, 197.476 )
-scale = Vector2( 1.03344, 0.880242 )
+[node name="PlantingArea3" parent="PlantingAreas" instance=ExtResource( 7 )]
+position = Vector2( 264.237, 456.065 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea1"]
-position = Vector2( -30.7902, -33.8642 )
-shape = SubResource( 230 )
-
-[node name="PlantingArea2" type="Area2D" parent="PlantingAreas" groups=[
-"planting_areas",
-]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea2"]
-position = Vector2( 265.004, 455.781 )
-shape = SubResource( 231 )
-
-[node name="PlantingArea3" type="Area2D" parent="PlantingAreas" groups=[
-"planting_areas",
-]]
-position = Vector2( 843.139, 484.984 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingAreas/PlantingArea3"]
-position = Vector2( -34.9672, -29.3343 )
-shape = SubResource( 232 )
+[node name="PlantingArea4" parent="PlantingAreas" instance=ExtResource( 7 )]
+position = Vector2( 808.381, 454.985 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]

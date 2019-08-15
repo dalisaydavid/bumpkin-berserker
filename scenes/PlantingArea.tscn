@@ -1,24 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/PlantingArea.gd" type="Script" id=1]
-[ext_resource path="res://scripts/PlantingAreaCollision.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44, 24 )
 
 [node name="PlantingArea" type="Node2D"]
 script = ExtResource( 1 )
+plant_scene_path = "res://scenes/Plant.tscn"
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+[node name="Area2D" type="Area2D" parent="."]
 gravity = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
-script = ExtResource( 2 )
 
-[node name="ProgressBar" type="ProgressBar" parent="KinematicBody2D/Area2D/CollisionShape2D"]
+[node name="ProgressBar" type="ProgressBar" parent="Area2D/CollisionShape2D"]
 margin_left = -44.5996
 margin_top = -65.3698
 margin_right = 43.4004
