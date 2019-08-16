@@ -59,10 +59,14 @@ func grow_plant():
 	)
 
 func _on_PickArea_body_entered(body):
-	if body.get_parent().get_name() == 'Character' or body.get_parent().is_in_group('enemies'):
+	var parent = body.get_parent()
+	if parent.get_name() == 'Character' or parent.is_in_group('enemies'):
 		if pickable:
 			get_node('Sprite'+str(plant_index)).z_index = 200
 			$PickEffect.start()
+			
+			if parent.get_name() == 'Character':
+				parent.collect_plant()
 
 func _on_PickEffect_tween_completed(object, key):
 	queue_free()

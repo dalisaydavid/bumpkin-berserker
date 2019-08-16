@@ -1,14 +1,19 @@
-[gd_scene load_steps=280 format=2]
+[gd_scene load_steps=287 format=2]
 
 [ext_resource path="res://scripts/bgmusic.gd" type="Script" id=1]
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://scripts/Minimap.gd" type="Script" id=5]
-[ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=6]
-[ext_resource path="res://sounds/The Call - Epic Emotional Piano Music - RF.ogg" type="AudioStream" id=7]
-[ext_resource path="res://scripts/cursor.gd" type="Script" id=8]
-[ext_resource path="res://scripts/EnemySpawn.gd" type="Script" id=9]
+[ext_resource path="res://assets/health_bar_big.png" type="Texture" id=6]
+[ext_resource path="res://scripts/HealthBar.gd" type="Script" id=7]
+[ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://scripts/KillCountLabel.gd" type="Script" id=9]
+[ext_resource path="res://scripts/PlantsCollectedLabel.gd" type="Script" id=10]
+[ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=11]
+[ext_resource path="res://sounds/The Call - Epic Emotional Piano Music - RF.ogg" type="AudioStream" id=12]
+[ext_resource path="res://scripts/cursor.gd" type="Script" id=13]
+[ext_resource path="res://scripts/EnemySpawn.gd" type="Script" id=14]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -2502,6 +2507,16 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 0/z_index = 1
 
+[sub_resource type="DynamicFont" id=271]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=272]
+size = 32
+outline_color = Color( 0.286275, 0.764706, 0.196078, 1 )
+use_mipmaps = true
+font_data = ExtResource( 8 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -2594,35 +2609,64 @@ wait_time = 0.25
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Minimap" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
 
+[node name="HealthBar" type="Sprite" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.698039 )
+position = Vector2( 1171.29, 57.8845 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 6 )
+vframes = 3
+hframes = 2
+frame = 4
+script = ExtResource( 7 )
+
+[node name="KillCountLabel" type="Label" parent="CanvasLayer"]
+margin_left = 1064.61
+margin_top = 44.0866
+margin_right = 1111.61
+margin_bottom = 109.087
+custom_fonts/font = SubResource( 271 )
+custom_colors/font_color = Color( 0.878431, 0.305882, 0.196078, 1 )
+text = "0"
+script = ExtResource( 9 )
+
+[node name="PlantsCollectedLabel" type="Label" parent="CanvasLayer"]
+margin_left = 1006.13
+margin_top = 44.3526
+margin_right = 1046.13
+margin_bottom = 77.3526
+custom_fonts/font = SubResource( 272 )
+custom_colors/font_color = Color( 0.639216, 0.729412, 0.231373, 1 )
+text = "0"
+script = ExtResource( 10 )
+
 [node name="PlantingAreas" type="Node" parent="."]
 
-[node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 6 )]
+[node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 11 )]
 position = Vector2( 263.697, 167.512 )
 
-[node name="PlantingArea2" parent="PlantingAreas" instance=ExtResource( 6 )]
+[node name="PlantingArea2" parent="PlantingAreas" instance=ExtResource( 11 )]
 position = Vector2( 808.381, 168.052 )
 
-[node name="PlantingArea3" parent="PlantingAreas" instance=ExtResource( 6 )]
+[node name="PlantingArea3" parent="PlantingAreas" instance=ExtResource( 11 )]
 position = Vector2( 264.237, 456.065 )
 
-[node name="PlantingArea4" parent="PlantingAreas" instance=ExtResource( 6 )]
+[node name="PlantingArea4" parent="PlantingAreas" instance=ExtResource( 11 )]
 position = Vector2( 808.381, 454.985 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 12 )
 
 [node name="Cursor" type="Node2D" parent="."]
-script = ExtResource( 8 )
+script = ExtResource( 13 )
 
 [node name="EnemySpawn0" type="Position2D" parent="."]
 editor/display_folded = true
 position = Vector2( 37.6761, 47.7317 )
-script = ExtResource( 9 )
+script = ExtResource( 14 )
 enemy_scene_path = "res://scenes/Enemy.tscn"
 
 [node name="Timer" type="Timer" parent="EnemySpawn0"]
@@ -2632,7 +2676,7 @@ autostart = true
 [node name="EnemySpawn1" type="Position2D" parent="."]
 editor/display_folded = true
 position = Vector2( 1055.07, 24.8196 )
-script = ExtResource( 9 )
+script = ExtResource( 14 )
 enemy_scene_path = "res://scenes/Enemy.tscn"
 
 [node name="Timer" type="Timer" parent="EnemySpawn1"]
@@ -2642,7 +2686,7 @@ autostart = true
 [node name="EnemySpawn2" type="Position2D" parent="."]
 editor/display_folded = true
 position = Vector2( 1060.43, 579.097 )
-script = ExtResource( 9 )
+script = ExtResource( 14 )
 enemy_scene_path = "res://scenes/Enemy.tscn"
 
 [node name="Timer" type="Timer" parent="EnemySpawn2"]
@@ -2651,7 +2695,7 @@ autostart = true
 
 [node name="EnemySpawn3" type="Position2D" parent="."]
 position = Vector2( 42.0636, 568.86 )
-script = ExtResource( 9 )
+script = ExtResource( 14 )
 enemy_scene_path = "res://scenes/Enemy.tscn"
 
 [node name="Timer" type="Timer" parent="EnemySpawn3"]

@@ -21,7 +21,11 @@ export var dampening = 300.0
 var is_invulnerable = false
 var original_modulate
 var can_shoot
+var kill_count = 0
+var plants_collected_count = 0
 signal shot
+signal damaged
+signal plant_collected
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,7 +42,9 @@ func set_invulnerability(b):
 	if is_invulnerable == false:
 		$KinematicBody2D/Sprite.modulate = original_modulate
 		
-	
+func collect_plant():
+	plants_collected_count += 1
+	emit_signal('plant_collected')
 
 func point_gun():
 	$KinematicBody2D/Gun.look_at(get_global_mouse_position())
@@ -98,9 +104,10 @@ func shoot(knockback_amount=100):
 	var bodies_in_gun_range = $KinematicBody2D/Gun/GunRange.get_overlapping_bodies()
 	var enemies_in_gun_range = []
 	for body in bodies_in_gun_range:
-		print(body.get_parent().get_name())
+#		print(body.get_parent().get_name())
 		if body.get_parent().is_in_group('enemies'):
 			body.get_parent().damage()
+			kill_count += 1 # @TODO: This assumes "doing damage" = "kill"
 	
 	push_away_from_position(get_global_mouse_position(), knockback_amount)
 	
@@ -126,6 +133,8 @@ func damage(amount):
 	
 	is_invulnerable = true
 	$DamageInvulnerableTimer.start()
+	
+	emit_signal('damaged')
 		
 
 
