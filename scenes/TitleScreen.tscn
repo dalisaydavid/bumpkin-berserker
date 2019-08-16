@@ -129,7 +129,7 @@ margin_right = 789.0
 margin_bottom = 460.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
-text = "Version 1.0  Team Iron III"
+text = "Version 1.0  Team Iron IV"
 align = 2
 
 [node name="FadeIn" parent="." instance=ExtResource( 12 )]
