@@ -37,7 +37,7 @@ spread = 73.4
 gravity = Vector3( 5, 0, 0 )
 initial_velocity = 150.0
 initial_velocity_random = 1.0
-angular_velocity = 9.41645e+012
+angular_velocity = 9.41645e+12
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
@@ -111,8 +111,8 @@ region_rect = Rect2( 0, 0, 16, 16 )
 [node name="GunRange" type="Area2D" parent="KinematicBody2D/Gun"]
 position = Vector2( 50, 0 )
 scale = Vector2( 0.999998, 0.999998 )
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Gun/GunRange"]
 position = Vector2( 20.4545, -2.44755 )
@@ -131,7 +131,7 @@ position = Vector2( 0, -7 )
 z_index = 100
 frames = SubResource( 6 )
 animation = "idle"
-frame = 3
+frame = 2
 speed_scale = 2.0
 playing = true
 

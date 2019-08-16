@@ -10,35 +10,38 @@ var character_node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_physics_process(true)
+	set_process(true)
 	
 	$AnimationPlayer.play('Idle')
 	
 	root_node = get_tree().get_root().get_node('Node2D')
 	character_node = root_node.get_node('Character')
+	
+	move_speed = randi()%50+25
 
-func change_direction():
-	var animation = 'Idle'
-	
-	if velocity.x < 0: # walking left.
-		$KinematicBody2D/Sprite.flip_h = true
-	else: #walking right
-		$KinematicBody2D/Sprite.flip_h = false
-	
-	if velocity.y > 0: # walking down
-		animation = 'walking_down_diagonal'
-	elif velocity.y < 0:
-		animation = 'walking_up_diagonal'
-	else:
-		animation = 'walking_side'
-	$AnimationPlayer.play(animation)
+#func change_direction():
+#	var animation = 'Idle'
+#
+#	if velocity.x < 0: # walking left.
+#		$KinematicBody2D/Sprite.flip_h = true
+#	else: #walking right
+#		$KinematicBody2D/Sprite.flip_h = false
+#
+#	if velocity.y > 0: # walking down
+#		animation = 'walking_down_diagonal'
+#	elif velocity.y < 0:
+#		animation = 'walking_up_diagonal'
+#	else:
+#		animation = 'walking_side'
+#	$AnimationPlayer.play(animation)
 
 func damage():
-	is_dead = true
-	$AnimationPlayer.play('Dead')
+	queue_free()
+#	is_dead = true
+#	$AnimationPlayer.play('Dead')
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	if is_dead:
 		return
 		
@@ -58,19 +61,26 @@ func _physics_process(delta):
 			start_point = path[0]
 			path.remove(0)
 	
-	var target = get_closest_planting_area()
+	var target = null
 	if $Earshot.overlaps_body(character_node.get_node('KinematicBody2D')):
 		target = character_node.get_node('KinematicBody2D')
-	var closest_plant = get_closest_pickable_plant() 
+		
+	target = get_closest_planting_area()
+	# @TODO: Make closest plant function performant :(
+	var closest_plant = get_closest_pickable_plant(target)
 	if closest_plant:
 		target = closest_plant
+
 	var new_path = root_node.get_node('Navigation2D').get_simple_path(global_position, target.global_position)
 	set_path(new_path)
 
-func get_closest_pickable_plant():
+func get_closest_pickable_plant(planting_area):
 	var min_distance = INF
 	var min_plant = null
-	for plant in get_tree().get_nodes_in_group('plant'):
+	for plant in planting_area.get_children():
+		if plant.get_name() == 'Area2D':
+			continue
+			
 		if not plant.pickable:
 			continue
 		var distance = global_position.distance_to(plant.global_position)
@@ -97,6 +107,7 @@ func set_path(new_path):
 	if path.size() == 0:
 		return
 
-func _on_AnimationPlayer_animation_finished(anim_name):
-	pass
 
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == 'Dead':
+		queue_free()

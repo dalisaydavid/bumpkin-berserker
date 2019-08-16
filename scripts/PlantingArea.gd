@@ -24,9 +24,20 @@ func _ready():
 	
 	progress_bar.modulate.a = 0
 
+func can_progress():
+	for enemy in get_tree().get_nodes_in_group('enemies'):
+		if $Area2D.overlaps_body(enemy.get_node('KinematicBody2D')):
+			return false
+			
+	return true
+	
+
 func _process(delta):
 	
 	if farm_state == State.empty:
+		if not can_progress():
+			return
+			
 		if $Area2D.overlaps_body(character):
 			progress_bar.value += plant_speed * delta
 			progress_bar.modulate.a = 1
