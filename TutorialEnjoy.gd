@@ -3,6 +3,7 @@ extends Control
 onready var right_effect = get_node("TutorialArea/CenterBox/VBoxContainer/RightButton/Bounce")
 onready var right_sprite = get_node("TutorialArea/CenterBox/VBoxContainer/RightButton")
 
+var scene_path_to_load
 var arrow = load("res://assets/small_cursor.png")
 
 # Called when the node enters the scene tree for the first time.
@@ -12,8 +13,6 @@ func _ready():
 	_start_tweens()
 
 func _start_tweens():
-	
-	var dis = 5
 	
 	var right_size = right_sprite.get_size()
 	var right_new_size = Vector2(right_size[0], right_size[1] + 5)
@@ -33,5 +32,12 @@ func _start_tweens():
 	return
 	
 func _on_RightButton_pressed():
+	print('here')
 	var button = $TutorialArea/CenterBox/VBoxContainer/RightButton
-	get_tree().change_scene(button.scene_to_load)
+	scene_path_to_load = button.scene_to_load
+	$FadeIn.show()
+	$FadeIn.fade_in()
+
+func _on_FadeIn_fade_finished():
+	get_tree().change_scene(scene_path_to_load)
+
