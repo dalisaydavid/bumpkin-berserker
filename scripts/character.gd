@@ -29,7 +29,6 @@ func _ready():
 	
 	can_shoot = true
 	
-	$CropNumberTimer.connect('timeout', self, 'increase_available_crops', [1])
 	$DamageInvulnerableTimer.connect('timeout', self, 'set_invulnerability', [false])
 	original_modulate = $KinematicBody2D/Sprite.modulate
 
