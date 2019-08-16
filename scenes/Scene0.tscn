@@ -16,7 +16,7 @@
 [ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=14]
 [ext_resource path="res://sounds/The Call - Epic Emotional Piano Music - RF.ogg" type="AudioStream" id=15]
 [ext_resource path="res://scripts/cursor.gd" type="Script" id=16]
-[ext_resource path="res://scripts/EnemySpawn.gd" type="Script" id=17]
+[ext_resource path="res://scenes/EnemySpawn.tscn" type="PackedScene" id=17]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -2586,7 +2586,7 @@ tile_data = PoolIntArray( 917538, 536870912, 0, 983070, 536870912, 0, 983075, 53
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
 light_mask = 3
-position = Vector2( 551.895, 171.396 )
+position = Vector2( 166.258, 528.626 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
@@ -2612,6 +2612,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Minimap" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
@@ -2717,46 +2718,19 @@ stream = ExtResource( 15 )
 [node name="Cursor" type="Node2D" parent="."]
 script = ExtResource( 16 )
 
-[node name="EnemySpawn0" type="Position2D" parent="."]
-editor/display_folded = true
-position = Vector2( 37.6761, 47.7317 )
-script = ExtResource( 17 )
-enemy_scene_path = "res://scenes/Enemy.tscn"
-
-[node name="Timer" type="Timer" parent="EnemySpawn0"]
-wait_time = 5.0
-autostart = true
-
-[node name="EnemySpawn1" type="Position2D" parent="."]
-editor/display_folded = true
-position = Vector2( 1055.07, 24.8196 )
-script = ExtResource( 17 )
-enemy_scene_path = "res://scenes/Enemy.tscn"
-
-[node name="Timer" type="Timer" parent="EnemySpawn1"]
-wait_time = 5.0
-autostart = true
-
-[node name="EnemySpawn2" type="Position2D" parent="."]
-editor/display_folded = true
-position = Vector2( 1060.43, 579.097 )
-script = ExtResource( 17 )
-enemy_scene_path = "res://scenes/Enemy.tscn"
-
-[node name="Timer" type="Timer" parent="EnemySpawn2"]
-wait_time = 5.0
-autostart = true
-
-[node name="EnemySpawn3" type="Position2D" parent="."]
-position = Vector2( 42.0636, 568.86 )
-script = ExtResource( 17 )
-enemy_scene_path = "res://scenes/Enemy.tscn"
-
-[node name="Timer" type="Timer" parent="EnemySpawn3"]
-wait_time = 5.0
-autostart = true
-
 [node name="OverlayColor" type="CanvasModulate" parent="."]
 position = Vector2( -0.762085, 0.761993 )
 color = Color( 0.843137, 0.662745, 0.490196, 1 )
+
+[node name="EnemySpawn0" parent="." instance=ExtResource( 17 )]
+position = Vector2( 74.0396, 546.228 )
+
+[node name="EnemySpawn1" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1005.73, 107.249 )
+
+[node name="EnemySpawn2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1014.87, 530.212 )
+
+[node name="EnemySpawn3" parent="." instance=ExtResource( 17 )]
+position = Vector2( 69.4669, 101.522 )
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]

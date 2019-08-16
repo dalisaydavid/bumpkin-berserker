@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/EnemySpawn.gd" type="Script" id=1]
+[ext_resource path="res://assets/ufo_sprite_sheet/ufo_sprite_sheet2.png" type="Texture" id=2]
+[ext_resource path="res://scripts/EnemySpawnLaser.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Expose"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.337255, 0.576471, 0.807843, 0 ), Color( 0.337255, 0.576471, 0.807843, 0.611765 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.4, 0.992528 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.337255, 0.576471, 0.807843, 0.611765 ), Color( 0.337255, 0.576471, 0.807843, 0 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Float"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.99983 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
+}
+
+[node name="EnemySpawn" type="Position2D"]
+position = Vector2( 1007.07, 57.9748 )
+z_index = 2000
+script = ExtResource( 1 )
+enemy_scene_path = "res://scenes/Enemy.tscn"
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.431373 )
+position = Vector2( -8, -20 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -22.1972 )
+
+[node name="EnemySpawnLaser" type="Line2D" parent="."]
+position = Vector2( -1047.07, 9.1804 )
+points = PoolVector2Array( 1045.73, -36.2747, 1045.17, 13.7663 )
+width = 30.0
+default_color = Color( 0.337255, 0.576471, 0.807843, 0 )
+texture_mode = 1099956224
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemySpawnLaser"]
+anims/Expose = SubResource( 2 )
+anims/Hide = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Float = SubResource( 1 )
+[connection signal="animation_finished" from="EnemySpawnLaser/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
