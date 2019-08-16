@@ -87,8 +87,9 @@ func shoot(knockback_amount=100):
 	var bodies_in_gun_range = $KinematicBody2D/Gun/GunRange.get_overlapping_bodies()
 	var enemies_in_gun_range = []
 	for body in bodies_in_gun_range:
+		print(body.get_parent().get_name())
 		if body.get_parent().is_in_group('enemies'):
-			body.get_parent().queue_free()
+			body.get_parent().damage()
 	
 	push_away_from_position(get_global_mouse_position(), knockback_amount)
 	

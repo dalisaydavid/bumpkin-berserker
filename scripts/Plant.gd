@@ -59,7 +59,7 @@ func grow_plant():
 	)
 
 func _on_PickArea_body_entered(body):
-	if body.get_parent().get_name() == 'Character':
+	if body.get_parent().get_name() == 'Character' or body.get_parent().is_in_group('enemies'):
 		if pickable:
 			get_node('Sprite'+str(plant_index)).z_index = 200
 			$PickEffect.start()
