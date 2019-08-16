@@ -2104,7 +2104,7 @@ points = PoolVector2Array( 0, 8.27588, 16, 8.27588, 16, 16, 0, 16 )
 11/z_index = 0
 
 [sub_resource type="Gradient" id=226]
-offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+07 )
+offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+007 )
 colors = PoolColorArray( 0.898039, 0.101961, 0.0470588, 1, 0.839216, 0.25098, 0.25098, 1, 0.980392, 0.968627, 0.968627, 1 )
 
 [sub_resource type="GradientTexture" id=227]
@@ -2612,7 +2612,6 @@ wait_time = 0.25
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Minimap" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
@@ -2630,17 +2629,17 @@ script = ExtResource( 7 )
 
 [node name="PlantsCollectedIcon" type="Sprite" parent="CanvasLayer"]
 modulate = Color( 0.639216, 0.729412, 0.231373, 1 )
-position = Vector2( 1122.44, 101.685 )
+position = Vector2( 20.8297, 54.5706 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 0, 80, 16, 16 )
 
 [node name="PlantsCollectedLabel" type="Label" parent="CanvasLayer"]
-margin_left = 1139.13
-margin_top = 85.3526
-margin_right = 1179.13
-margin_bottom = 118.353
+margin_left = 40.8297
+margin_top = 39.9236
+margin_right = 80.8297
+margin_bottom = 72.924
 custom_fonts/font = SubResource( 271 )
 custom_colors/font_color = Color( 0.639216, 0.729412, 0.231373, 1 )
 text = "0"
@@ -2648,15 +2647,15 @@ script = ExtResource( 10 )
 
 [node name="KillCountIcon" type="Sprite" parent="CanvasLayer"]
 modulate = Color( 0.784314, 0.611765, 0.392157, 1 )
-position = Vector2( 1200.44, 100.685 )
+position = Vector2( 20.83, 95.234 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 11 )
 
 [node name="KillCountLabel" type="Label" parent="CanvasLayer"]
-margin_left = 1218.61
-margin_top = 86.0866
-margin_right = 1265.61
-margin_bottom = 151.087
+margin_left = 40.8297
+margin_top = 81.3026
+margin_right = 87.8297
+margin_bottom = 114.303
 custom_fonts/font = SubResource( 272 )
 custom_colors/font_color = Color( 0.784314, 0.611765, 0.392157, 1 )
 text = "0"
@@ -2664,7 +2663,7 @@ script = ExtResource( 12 )
 
 [node name="HeartsHealthBar" type="Node2D" parent="CanvasLayer"]
 editor/display_folded = true
-position = Vector2( 1119.57, 60.8814 )
+position = Vector2( 20.8297, 14.5706 )
 scale = Vector2( 3, 3 )
 script = ExtResource( 13 )
 

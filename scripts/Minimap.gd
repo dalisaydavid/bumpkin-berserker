@@ -30,7 +30,9 @@ func _ready():
 	character = root_node.get_node("Character").get_node("KinematicBody2D")
 	plots = root_node.get_node("PlantingAreas").get_children()
 	
-	origin = Vector2(offset, offset)
+	print(width)
+	
+	origin = Vector2(scene_width, offset)
 	scene_size = Vector2(scene_width, scene_height)
 	map_size = Vector2(width, height)
 	map_rect = Rect2(origin, map_size)
