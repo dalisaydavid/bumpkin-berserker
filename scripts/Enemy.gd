@@ -61,15 +61,19 @@ func _process(delta):
 			start_point = path[0]
 			path.remove(0)
 	
+	
 	var target = null
-	if $Earshot.overlaps_body(character_node.get_node('KinematicBody2D')):
-		target = character_node.get_node('KinematicBody2D')
 		
-	target = get_closest_planting_area()
+	var planting_area = get_closest_planting_area()
+	target = planting_area
+		
 	# @TODO: Make closest plant function performant :(
-	var closest_plant = get_closest_pickable_plant(target)
+	var closest_plant = get_closest_pickable_plant(planting_area)
 	if closest_plant:
 		target = closest_plant
+		
+	if $Earshot.overlaps_body(character_node.get_node('KinematicBody2D')):
+		target = character_node.get_node('KinematicBody2D')
 
 	var new_path = root_node.get_node('Navigation2D').get_simple_path(global_position, target.global_position)
 	set_path(new_path)
@@ -78,7 +82,7 @@ func get_closest_pickable_plant(planting_area):
 	var min_distance = INF
 	var min_plant = null
 	for plant in planting_area.get_children():
-		if plant.get_name() == 'Area2D':
+		if not plant.is_in_group('plant'):
 			continue
 			
 		if not plant.pickable:
@@ -111,3 +115,8 @@ func set_path(new_path):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == 'Dead':
 		queue_free()
+
+
+func _on_AttackArea_body_entered(body):
+	if body.get_parent().get_name() == 'Character':
+		body.get_parent().damage(1)

@@ -6,6 +6,7 @@ export(String, FILE, '*tscn') var hook_scene_path
 
 export var movement_speed = 50
 export var max_crop_count = 15
+export var health = 5
 var crops_available_count = 15
 
 var projectile: Node2D = null
@@ -17,7 +18,8 @@ var small_cursor = load("res://assets/small_cursor.png")
 var impulse = Vector2.ZERO
 var impulse_unfolded = 100.0
 export var dampening = 300.0
-
+var is_invulnerable = false
+var original_modulate
 var can_shoot
 signal shot
 
@@ -28,6 +30,16 @@ func _ready():
 	can_shoot = true
 	
 	$CropNumberTimer.connect('timeout', self, 'increase_available_crops', [1])
+	$DamageInvulnerableTimer.connect('timeout', self, 'set_invulnerability', [false])
+	original_modulate = $KinematicBody2D/Sprite.modulate
+
+func set_invulnerability(b):
+	is_invulnerable = b
+	
+	if is_invulnerable == false:
+		$KinematicBody2D/Sprite.modulate = original_modulate
+		
+	
 
 func point_gun():
 	$KinematicBody2D/Gun.look_at(get_global_mouse_position())
@@ -101,6 +113,22 @@ func shoot(knockback_amount=100):
 	$KinematicBody2D/Particles2D.global_position = $KinematicBody2D/Gun/Position2D.global_position
 	$KinematicBody2D/Particles2D.rotation = $KinematicBody2D/Gun.rotation
 	$ReloadTimer.start()
+
+func damage(amount):
+	if is_invulnerable:
+		return
+		
+	health -= amount
+
+	if health <= 0:
+		get_tree().quit()
+	
+	$KinematicBody2D/Sprite.modulate = Color(1, .5, .5, 1)
+	
+	is_invulnerable = true
+	$DamageInvulnerableTimer.start()
+		
+
 
 func _input(event):
 	if event.is_action_released('shoot'):

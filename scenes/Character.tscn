@@ -6,18 +6,18 @@
 [ext_resource path="res://assets/farmer_movement/tile000.png" type="Texture" id=4]
 [ext_resource path="res://assets/farmer_movement/tile001.png" type="Texture" id=5]
 [ext_resource path="res://assets/farmer_movement/tile002.png" type="Texture" id=6]
-[ext_resource path="res://assets/farmer_movement/tile003.png" type="Texture" id=7]
-[ext_resource path="res://assets/farmer_movement/tile004.png" type="Texture" id=8]
-[ext_resource path="res://assets/farmer_movement/tile005.png" type="Texture" id=9]
-[ext_resource path="res://assets/farmer_movement/tile012.png" type="Texture" id=10]
-[ext_resource path="res://assets/farmer_movement/tile013.png" type="Texture" id=11]
-[ext_resource path="res://assets/farmer_movement/tile014.png" type="Texture" id=12]
+[ext_resource path="res://assets/farmer_movement/tile012.png" type="Texture" id=7]
+[ext_resource path="res://assets/farmer_movement/tile013.png" type="Texture" id=8]
+[ext_resource path="res://assets/farmer_movement/tile014.png" type="Texture" id=9]
+[ext_resource path="res://assets/farmer_movement/tile009.png" type="Texture" id=10]
+[ext_resource path="res://assets/farmer_movement/tile010.png" type="Texture" id=11]
+[ext_resource path="res://assets/farmer_movement/tile011.png" type="Texture" id=12]
 [ext_resource path="res://assets/farmer_movement/tile006.png" type="Texture" id=13]
 [ext_resource path="res://assets/farmer_movement/tile007.png" type="Texture" id=14]
 [ext_resource path="res://assets/farmer_movement/tile008.png" type="Texture" id=15]
-[ext_resource path="res://assets/farmer_movement/tile009.png" type="Texture" id=16]
-[ext_resource path="res://assets/farmer_movement/tile010.png" type="Texture" id=17]
-[ext_resource path="res://assets/farmer_movement/tile011.png" type="Texture" id=18]
+[ext_resource path="res://assets/farmer_movement/tile003.png" type="Texture" id=16]
+[ext_resource path="res://assets/farmer_movement/tile004.png" type="Texture" id=17]
+[ext_resource path="res://assets/farmer_movement/tile005.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.48875, 4.62351 )
@@ -56,12 +56,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "walking_diagonal",
+"name": "walking_up",
 "speed": 3.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "walking_up",
+"name": "walking_up_diagonal",
 "speed": 3.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 15 ) ],
@@ -71,7 +71,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ],
 "loop": true,
-"name": "walking_up_diagonal",
+"name": "walking_diagonal",
 "speed": 3.0
 } ]
 
@@ -98,6 +98,7 @@ randomness = 1.0
 process_material = SubResource( 4 )
 
 [node name="Gun" type="Node2D" parent="KinematicBody2D"]
+editor/display_folded = true
 position = Vector2( 0, 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D/Gun"]
@@ -141,5 +142,9 @@ wait_time = 0.75
 [node name="CropNumberTimer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
+
+[node name="DamageInvulnerableTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 [connection signal="body_exited" from="KinematicBody2D/Gun/GunRange" to="." method="_on_GunRange_body_exited"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

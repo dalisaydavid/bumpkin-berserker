@@ -2657,4 +2657,7 @@ enemy_scene_path = "res://scenes/Enemy.tscn"
 [node name="Timer" type="Timer" parent="EnemySpawn3"]
 wait_time = 5.0
 autostart = true
+
+[node name="OverlayColor" type="CanvasModulate" parent="."]
+color = Color( 0.709804, 0.529412, 0.356863, 1 )
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]

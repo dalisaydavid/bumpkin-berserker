@@ -36,7 +36,7 @@ region_enabled = true
 region_rect = Rect2( 64, 512, 16, 16 )
 
 [node name="GrowTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 8.0
 autostart = true
 
 [node name="PickArea" type="Area2D" parent="."]
