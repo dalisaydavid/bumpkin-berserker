@@ -14,6 +14,7 @@ enum State {
 var character: Node2D
 var progress_bar: Node
 var last_plant: Node2D
+var plants = []
 var farm_state
 
 # Called when the node enters the scene tree for the first time.
@@ -68,9 +69,11 @@ func plant():
 	var width = $Area2D/CollisionShape2D.shape.extents.x
 	var height = $Area2D/CollisionShape2D.shape.extents.y
 	
+	plants = []
 	for spot_v in plant_spots:
 		for spot_h in plant_spots:
 				var rel = Vector2(width * spot_h, height * spot_v)
 				last_plant = load(plant_scene_path).instance()
 				add_child(last_plant)
+				plants.append(last_plant)
 				last_plant.global_position = $Area2D.global_position + rel

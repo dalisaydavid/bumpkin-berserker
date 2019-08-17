@@ -4,7 +4,7 @@ export(String, FILE, '*tscn') var enemy_scene_path
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.wait_time = randi()%45+30
+	$Timer.wait_time = 5
 	$Timer.connect('timeout', self, 'send_ufo_beam')
 	$AnimationPlayer.play('Float')
 # Called every frame. 'delta' is the elapsed time since the previous frame.

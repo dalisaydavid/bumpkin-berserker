@@ -67,6 +67,8 @@ func _on_PickArea_body_entered(body):
 			
 			if parent.get_name() == 'Character':
 				parent.collect_plant()
+			
+			get_parent().plants.erase(self)
 
 func _on_PickEffect_tween_completed(object, key):
 	queue_free()
