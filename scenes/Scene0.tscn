@@ -1,4 +1,4 @@
-[gd_scene load_steps=291 format=2]
+[gd_scene load_steps=293 format=2]
 
 [ext_resource path="res://scripts/bgmusic.gd" type="Script" id=1]
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=2]
@@ -13,10 +13,11 @@
 [ext_resource path="res://assets/alien_icon.png" type="Texture" id=11]
 [ext_resource path="res://scripts/KillCountLabel.gd" type="Script" id=12]
 [ext_resource path="res://scripts/HeartsHealthBar.gd" type="Script" id=13]
-[ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=14]
-[ext_resource path="res://sounds/BG_music.ogg" type="AudioStream" id=15]
-[ext_resource path="res://scripts/cursor.gd" type="Script" id=16]
-[ext_resource path="res://scenes/EnemySpawn.tscn" type="PackedScene" id=17]
+[ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=14]
+[ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=15]
+[ext_resource path="res://sounds/BG_music.ogg" type="AudioStream" id=16]
+[ext_resource path="res://scripts/cursor.gd" type="Script" id=17]
+[ext_resource path="res://scenes/EnemySpawn.tscn" type="PackedScene" id=18]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -2520,9 +2521,13 @@ font_data = ExtResource( 9 )
 size = 32
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=273]
-size = 64
+[sub_resource type="DynamicFont" id=274]
+size = 56
 font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=273]
+size = 40
+font_data = ExtResource( 14 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -2622,7 +2627,6 @@ wait_time = 0.25
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Minimap" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
@@ -2710,10 +2714,10 @@ region_rect = Rect2( 16, 0, 16, 16 )
 [node name="GameoverLabel" type="Label" parent="CanvasLayer"]
 visible = false
 margin_left = -53.1091
-margin_top = 134.884
+margin_top = 194.884
 margin_right = 1388.89
-margin_bottom = 607.884
-custom_fonts/font = SubResource( 273 )
+margin_bottom = 667.884
+custom_fonts/font = SubResource( 274 )
 custom_colors/font_color = Color( 0.215686, 0.45098, 0.0980392, 1 )
 text = "Game over.
 
@@ -2724,49 +2728,67 @@ the alien invasion.
 Press R to restart."
 align = 1
 
+[node name="AchievementLabel" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = -53.0
+margin_top = 105.0
+margin_right = 1389.0
+margin_bottom = 154.0
+custom_fonts/font = SubResource( 273 )
+custom_colors/font_color = Color( 0.215686, 0.45098, 0.0980392, 1 )
+text = "10 Kills: Bumpkin Berserker"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/AchievementLabel"]
+margin_left = 383.0
+margin_top = 65.0
+margin_right = 423.0
+margin_bottom = 69.0
+rect_scale = Vector2( 17, 1 )
+
 [node name="PlantingAreas" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 14 )]
+[node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 15 )]
 position = Vector2( 375.237, 216.224 )
 
-[node name="PlantingArea2" parent="PlantingAreas" instance=ExtResource( 14 )]
+[node name="PlantingArea2" parent="PlantingAreas" instance=ExtResource( 15 )]
 position = Vector2( 919.908, 215.472 )
 
-[node name="PlantingArea3" parent="PlantingAreas" instance=ExtResource( 14 )]
+[node name="PlantingArea3" parent="PlantingAreas" instance=ExtResource( 15 )]
 position = Vector2( 377.186, 504.829 )
 
-[node name="PlantingArea4" parent="PlantingAreas" instance=ExtResource( 14 )]
+[node name="PlantingArea4" parent="PlantingAreas" instance=ExtResource( 15 )]
 position = Vector2( 919.921, 503.697 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
+stream = ExtResource( 16 )
 volume_db = -15.0
 
 [node name="Cursor" type="Node2D" parent="."]
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="OverlayColor" type="CanvasModulate" parent="."]
 visible = false
 position = Vector2( -0.762085, 0.761993 )
 color = Color( 0.227451, 0.219608, 0.211765, 1 )
 
-[node name="EnemySpawn0" parent="." instance=ExtResource( 17 )]
+[node name="EnemySpawn0" parent="." instance=ExtResource( 18 )]
 position = Vector2( 51.1174, 673.899 )
 min_spawn_time = 20
 max_spawn_time = 45
 
-[node name="EnemySpawn1" parent="." instance=ExtResource( 17 )]
+[node name="EnemySpawn1" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1242.3, 9.23391 )
-min_spawn_time = 20
-max_spawn_time = 45
+min_spawn_time = 1
+max_spawn_time = 2
 
-[node name="EnemySpawn2" parent="." instance=ExtResource( 17 )]
+[node name="EnemySpawn2" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1234.03, 676.248 )
 min_spawn_time = 20
 max_spawn_time = 45
 
-[node name="EnemySpawn3" parent="." instance=ExtResource( 17 )]
+[node name="EnemySpawn3" parent="." instance=ExtResource( 18 )]
 position = Vector2( 50.2057, 9.74094 )
 min_spawn_time = 20
 max_spawn_time = 45
