@@ -1,4 +1,4 @@
-[gd_scene load_steps=290 format=2]
+[gd_scene load_steps=291 format=2]
 
 [ext_resource path="res://scripts/bgmusic.gd" type="Script" id=1]
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=2]
@@ -2104,7 +2104,7 @@ points = PoolVector2Array( 0, 8.27588, 16, 8.27588, 16, 16, 0, 16 )
 11/z_index = 0
 
 [sub_resource type="Gradient" id=226]
-offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+007 )
+offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+07 )
 colors = PoolColorArray( 0.898039, 0.101961, 0.0470588, 1, 0.839216, 0.25098, 0.25098, 1, 0.980392, 0.968627, 0.968627, 1 )
 
 [sub_resource type="GradientTexture" id=227]
@@ -2520,6 +2520,10 @@ font_data = ExtResource( 9 )
 size = 32
 font_data = ExtResource( 9 )
 
+[sub_resource type="DynamicFont" id=273]
+size = 64
+font_data = ExtResource( 9 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -2593,7 +2597,7 @@ light_mask = 3
 position = Vector2( 656.042, 228.223 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
-movement_speed = 5000
+movement_speed = 6000
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 653.995, 227.034 )
@@ -2700,6 +2704,23 @@ texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 16, 0, 16, 16 )
 
+[node name="GameoverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = -53.1091
+margin_top = 134.884
+margin_right = 1388.89
+margin_bottom = 607.884
+custom_fonts/font = SubResource( 273 )
+custom_colors/font_color = Color( 0.215686, 0.45098, 0.0980392, 1 )
+text = "Game over.
+
+Unforuntately,
+No one survives 
+the alien invasion.
+
+Press R to restart."
+align = 1
+
 [node name="PlantingAreas" type="Node" parent="."]
 
 [node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 14 )]
@@ -2723,7 +2744,7 @@ script = ExtResource( 16 )
 
 [node name="OverlayColor" type="CanvasModulate" parent="."]
 position = Vector2( -0.762085, 0.761993 )
-color = Color( 0.843137, 0.662745, 0.490196, 1 )
+color = Color( 0.227451, 0.219608, 0.211765, 1 )
 
 [node name="EnemySpawn0" parent="." instance=ExtResource( 17 )]
 position = Vector2( 51.1174, 673.899 )

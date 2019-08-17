@@ -1,28 +1,29 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/Tutorial.gd" type="Script" id=1]
-[ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=4]
-[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/buttons/MenuButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/left-arrow.png" type="Texture" id=7]
-[ext_resource path="res://assets/right-arrow.png" type="Texture" id=8]
+[ext_resource path="res://scenes/PlantingArea.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/buttons/MenuButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/left-arrow.png" type="Texture" id=8]
+[ext_resource path="res://assets/right-arrow.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="LineShape2D" id=3]
 d = 2.98172
 
 [sub_resource type="TileSet" id=4]
 0/name = "ff_master_tile_sheet.png 0"
-0/texture = ExtResource( 4 )
+0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 32, 320, 64, 16 )
@@ -38,7 +39,7 @@ d = 2.98172
 0/shapes = [  ]
 0/z_index = 0
 1/name = "ff_master_tile_sheet.png 1"
-1/texture = ExtResource( 4 )
+1/texture = ExtResource( 5 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 16, 352, 16, 64 )
@@ -53,6 +54,22 @@ d = 2.98172
 1/navigation_offset = Vector2( 0, 0 )
 1/shapes = [  ]
 1/z_index = 0
+2/name = "ff_master_tile_sheet.png 2"
+2/texture = ExtResource( 5 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 32, 368, 48, 48 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 16, 16 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="LineShape2D" id=5]
 normal = Vector2( 0, 1 )
@@ -60,13 +77,24 @@ d = 1.63075
 
 [sub_resource type="LineShape2D" id=6]
 normal = Vector2( 1, 0 )
-d = 65.8525
+d = 133.221
 
 [sub_resource type="LineShape2D" id=7]
 normal = Vector2( -1, 0 )
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 116.418, 106.891 )
+[sub_resource type="SegmentShape2D" id=8]
+a = Vector2( 0.178955, -52.2165 )
+b = Vector2( 0.178833, 25.9762 )
+
+[sub_resource type="SegmentShape2D" id=9]
+a = Vector2( 13.2111, 8.87158 )
+b = Vector2( -5.52271, 8.87158 )
+
+[sub_resource type="SegmentShape2D" id=10]
+a = Vector2( 19.6129, 10.0963 )
+
+[sub_resource type="SegmentShape2D" id=11]
+a = Vector2( 0.178711, -74.2082 )
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -86,8 +114,13 @@ margin_right = -150.0
 margin_bottom = -100.0
 rect_min_size = Vector2( 300, 250 )
 
+[node name="PlantingArea" parent="Tutorial Area" instance=ExtResource( 2 )]
+position = Vector2( 774.316, 383.516 )
+scale = Vector2( 0.713223, 0.978331 )
+z_index = 20
+
 [node name="Label" type="Label" parent="Tutorial Area"]
-margin_right = 780.0
+margin_right = 980.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "The Plants"
@@ -95,19 +128,19 @@ align = 1
 
 [node name="CenterBox" type="HBoxContainer" parent="Tutorial Area"]
 margin_top = 61.0
-margin_right = 780.0
-margin_bottom = 400.0
+margin_right = 980.0
+margin_bottom = 520.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tutorial Area/CenterBox"]
-margin_right = 388.0
-margin_bottom = 339.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Tutorial Area/CenterBox/VBoxContainer"]
-margin_right = 388.0
-margin_bottom = 339.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
@@ -118,23 +151,23 @@ valign = 1
 autowrap = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Tutorial Area/CenterBox"]
-margin_left = 392.0
-margin_right = 780.0
-margin_bottom = 339.0
+margin_left = 492.0
+margin_right = 980.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CharacterBoundary" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 106, 90 )
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 175.186, 269.717 )
+position = Vector2( 175.186, 267.076 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 3 )
 
@@ -142,7 +175,7 @@ shape = SubResource( 3 )
 tile_set = SubResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 131075, 1, 0, 131076, 536870912, 1, 131077, 536870912, 1, 131078, 536870912, 1, 131079, 536870912, 1, 131080, 536870912, 1, 131081, 536870912, 1, 131082, 536870912, 1, 131083, 536870912, 1, 131084, 536870912, 1, 131085, 536870912, 1, 131086, 536870912, 1, 131087, 536870912, 1, 131088, 536870912, 1, 131089, 536870912, 1, 131090, 536870913, 0, 196611, 1, 65536, 196626, 536870913, 65536, 262147, 1, 65536, 262162, 536870913, 65536, 327683, 1, 65536, 327698, 536870913, 65536, 393219, 1, 65536, 393234, 536870913, 65536, 458755, 1, 65536, 458770, 536870913, 65536, 524291, 1, 65536, 524306, 536870913, 65536, 589827, 1, 65536, 589842, 536870913, 65536, 655363, 1, 65536, 655378, 536870913, 65536, 720899, 1, 65536, 720914, 536870913, 65536, 786435, 1, 65536, 786450, 536870913, 65536, 851971, 1, 65536, 851986, 536870913, 65536, 917507, 1, 65536, 917522, 536870913, 65536, 983043, 1, 65536, 983058, 536870913, 65536, 1048579, 536870912, 3, 1048580, 0, 1, 1048581, 0, 1, 1048582, 0, 1, 1048583, 0, 1, 1048584, 0, 1, 1048585, 0, 1, 1048586, 0, 1, 1048587, 0, 1, 1048588, 0, 1, 1048589, 0, 1, 1048590, 0, 1, 1048591, 0, 1, 1048592, 0, 1, 1048593, 0, 1, 1048594, 536870912, 0 )
+tile_data = PoolIntArray( 131075, 1, 0, 131076, 536870912, 1, 131077, 536870912, 1, 131078, 536870912, 1, 131079, 536870912, 1, 131080, 536870912, 1, 131081, 536870912, 1, 131082, 536870912, 1, 131083, 536870912, 1, 131084, 536870912, 1, 131085, 536870912, 1, 131086, 536870912, 1, 131087, 536870912, 1, 131088, 536870912, 1, 131089, 536870912, 1, 131090, 536870913, 0, 196611, 1, 65536, 196626, 536870913, 65536, 262147, 1, 65536, 262162, 536870913, 65536, 327683, 1, 65536, 327698, 536870913, 65536, 393219, 1, 65536, 393234, 536870913, 65536, 458755, 1, 65536, 458770, 536870913, 65536, 524291, 1, 65536, 524306, 536870913, 65536, 589827, 1, 65536, 589842, 536870913, 65536, 655363, 1, 65536, 655378, 536870913, 65536, 720899, 1, 65536, 720914, 536870913, 65536, 786435, 1, 65536, 786440, 1, 0, 786441, 536870912, 0, 786444, 0, 0, 786445, 536870913, 0, 786450, 536870913, 65536, 851971, 1, 65536, 851976, 1, 65536, 851977, 2, 0, 851978, 2, 1, 851979, 2, 1, 851980, 536870914, 0, 851981, 536870913, 65536, 851986, 536870913, 65536, 917507, 1, 65536, 917512, 1, 65536, 917513, 2, 0, 917514, 2, 1, 917515, 2, 1, 917516, 536870914, 0, 917517, 536870913, 65536, 917522, 536870913, 65536, 983043, 1, 65536, 983048, 1, 65536, 983049, 2, 0, 983050, 2, 1, 983051, 2, 1, 983052, 536870914, 0, 983053, 536870913, 65536, 983058, 536870913, 65536, 1048579, 536870912, 3, 1048580, 0, 1, 1048581, 0, 1, 1048582, 0, 1, 1048583, 0, 1, 1048584, 0, 1, 1048585, 0, 1, 1048586, 0, 1, 1048587, 0, 1, 1048588, 0, 1, 1048589, 0, 1, 1048590, 0, 1, 1048591, 0, 1, 1048592, 0, 1, 1048593, 0, 1, 1048594, 536870912, 0 )
 
 [node name="CharacterBoundary2" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
@@ -154,7 +187,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 177.039, 37.6206 )
+position = Vector2( 255.941, 117.883 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 5 )
 
@@ -175,53 +208,84 @@ shape = SubResource( 6 )
 [node name="CharacterBoundary4" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 24.9662, 7.35362 )
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary4" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 293.356, 163.254 )
+position = Vector2( 374.979, 232.633 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 7 )
 
-[node name="PlantingArea" type="Node" parent="Tutorial Area/CenterBox/VBoxContainer2"]
-
-[node name="Area2D" type="Area2D" parent="Tutorial Area/CenterBox/VBoxContainer2/PlantingArea" groups=[
-"planting_areas",
+[node name="StaticBody2D" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
+"TileMapHookable",
 ]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/PlantingArea/Area2D"]
-position = Vector2( 742.047, 327.314 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/StaticBody2D" groups=[
+"TileMapHookable",
+]]
+position = Vector2( 241.094, 336.391 )
 shape = SubResource( 8 )
 
-[node name="Character" parent="." instance=ExtResource( 5 )]
-position = Vector2( 747.338, 333.411 )
+[node name="StaticBody2D2" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
+"TileMapHookable",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/StaticBody2D2" groups=[
+"TileMapHookable",
+]]
+position = Vector2( 247.61, 279.376 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
+"TileMapHookable",
+]]
+position = Vector2( 106, 90 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/StaticBody2D3" groups=[
+"TileMapHookable",
+]]
+position = Vector2( 198.74, 190.595 )
+shape = SubResource( 10 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
+"TileMapHookable",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/StaticBody2D4" groups=[
+"TileMapHookable",
+]]
+position = Vector2( 321.731, 360.012 )
+shape = SubResource( 11 )
+
+[node name="Character" parent="." instance=ExtResource( 6 )]
+position = Vector2( 925, 400 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
 
-[node name="LeftButton" parent="." instance=ExtResource( 6 )]
-margin_left = 47.7182
-margin_top = 104.014
-margin_right = 122.718
-margin_bottom = 169.014
+[node name="LeftButton" parent="." instance=ExtResource( 7 )]
+margin_left = 50.0
+margin_top = 95.0
+margin_right = 125.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
-icon = ExtResource( 7 )
+icon = ExtResource( 8 )
 scene_to_load = "res://scenes/TutorialHook.tscn"
 
 [node name="Bounce" type="Tween" parent="LeftButton"]
 repeat = true
 playback/repeat = true
 
-[node name="RightButton" parent="." instance=ExtResource( 6 )]
-margin_left = 944.933
-margin_top = 104.839
-margin_right = 1019.93
-margin_bottom = 169.839
+[node name="RightButton" parent="." instance=ExtResource( 7 )]
+margin_left = 1150.0
+margin_top = 95.0
+margin_right = 1225.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 scene_to_load = "res://scenes/TutorialEnjoy.tscn"
 
 [node name="Bounce" type="Tween" parent="RightButton"]

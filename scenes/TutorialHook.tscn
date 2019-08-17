@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Bungee-Shade.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://fonts/Bungee-Regular.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/mouse-left-click.png" type="Texture" id=4]
+[ext_resource path="res://assets/mouse-right-click.png" type="Texture" id=4]
 [ext_resource path="res://assets/ff_master_tile_sheet.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/buttons/MenuButton.tscn" type="PackedScene" id=7]
@@ -57,7 +57,7 @@ d = 2.98172
 
 [sub_resource type="LineShape2D" id=5]
 normal = Vector2( 0, 1 )
-d = 1.63075
+d = 1.93647
 
 [sub_resource type="LineShape2D" id=6]
 normal = Vector2( 1, 0 )
@@ -65,6 +65,7 @@ d = 65.8525
 
 [sub_resource type="LineShape2D" id=7]
 normal = Vector2( -1, 0 )
+d = 5.97379
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -85,7 +86,7 @@ margin_bottom = -100.0
 rect_min_size = Vector2( 300, 250 )
 
 [node name="Label" type="Label" parent="Tutorial Area"]
-margin_right = 780.0
+margin_right = 980.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "The hook"
@@ -93,19 +94,19 @@ align = 1
 
 [node name="CenterBox" type="HBoxContainer" parent="Tutorial Area"]
 margin_top = 61.0
-margin_right = 780.0
-margin_bottom = 400.0
+margin_right = 980.0
+margin_bottom = 520.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tutorial Area/CenterBox"]
-margin_right = 388.0
-margin_bottom = 339.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Tutorial Area/CenterBox/VBoxContainer"]
-margin_right = 388.0
-margin_bottom = 167.0
+margin_right = 488.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
@@ -114,32 +115,32 @@ valign = 1
 autowrap = true
 
 [node name="WASD" type="TextureRect" parent="Tutorial Area/CenterBox/VBoxContainer"]
-margin_top = 171.0
-margin_right = 388.0
-margin_bottom = 339.0
+margin_top = 231.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 stretch_mode = 6
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Tutorial Area/CenterBox"]
-margin_left = 392.0
-margin_right = 780.0
-margin_bottom = 339.0
+margin_left = 492.0
+margin_right = 980.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CharacterBoundary" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 106, 90 )
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 175.186, 269.717 )
+position = Vector2( 176.352, 268.551 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 3 )
 
@@ -159,7 +160,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 177.039, 37.6206 )
+position = Vector2( 258.684, 112.267 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 5 )
 
@@ -173,7 +174,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary3" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( -17.5942, 180.401 )
+position = Vector2( 62.8842, 220.057 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 6 )
 
@@ -187,21 +188,21 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary4" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 293.356, 163.254 )
+position = Vector2( 383.165, 233.235 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 7 )
 
 [node name="Character" parent="." instance=ExtResource( 6 )]
-position = Vector2( 740.374, 330.054 )
+position = Vector2( 925, 400 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
 
 [node name="LeftButton" parent="." instance=ExtResource( 7 )]
-margin_left = 47.7182
-margin_top = 104.014
-margin_right = 122.718
-margin_bottom = 169.014
+margin_left = 50.0
+margin_top = 95.0
+margin_right = 125.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
 icon = ExtResource( 8 )
 scene_to_load = "res://scenes/TutorialShoot.tscn"
@@ -211,10 +212,10 @@ repeat = true
 playback/repeat = true
 
 [node name="RightButton" parent="." instance=ExtResource( 7 )]
-margin_left = 944.933
-margin_top = 104.839
-margin_right = 1019.93
-margin_bottom = 169.839
+margin_left = 1150.0
+margin_top = 95.0
+margin_right = 1225.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
 icon = ExtResource( 9 )
 scene_to_load = "res://scenes/TutorialPlant.tscn"
