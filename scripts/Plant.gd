@@ -46,6 +46,9 @@ func grow_plant():
 	if plant_index == max_plant_index-1:
 		$GrowTimer.stop() 
 		pickable = true
+		
+		for body in $PickArea.get_overlapping_bodies():
+			handle_collect(body)
 	
 	var current_sprite = get_node('Sprite'+str(plant_index))
 	$PickEffect.interpolate_property(
@@ -57,8 +60,8 @@ func grow_plant():
 		Tween.TRANS_CUBIC,
 		Tween.EASE_OUT 
 	)
-
-func _on_PickArea_body_entered(body):
+	
+func handle_collect(body):
 	var parent = body.get_parent()
 	if parent.get_name() == 'Character' or parent.is_in_group('enemies'):
 		if pickable:
@@ -67,6 +70,9 @@ func _on_PickArea_body_entered(body):
 			
 			if parent.get_name() == 'Character':
 				parent.collect_plant()
+
+func _on_PickArea_body_entered(body):
+	handle_collect(body)
 
 func _on_PickEffect_tween_completed(object, key):
 	queue_free()
