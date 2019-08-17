@@ -76,6 +76,7 @@ margin_bottom = -1.0
 script = ExtResource( 1 )
 
 [node name="Tutorial Area" type="VBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
@@ -92,6 +93,7 @@ text = "The Shotgun"
 align = 1
 
 [node name="CenterBox" type="HBoxContainer" parent="Tutorial Area"]
+editor/display_folded = true
 margin_top = 61.0
 margin_right = 980.0
 margin_bottom = 520.0
@@ -109,7 +111,10 @@ margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
-text = "Use your left mouse button to fire your weapon. PEW PEW"
+text = "Use your shotgun to protect your farm from unwanted extraterrestrials. 
+
+Left click your mouse to shoot.
+"
 valign = 1
 autowrap = true
 
@@ -132,6 +137,7 @@ size_flags_vertical = 3
 [node name="CharacterBoundary" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
+editor/display_folded = true
 position = Vector2( 106, 90 )
 collision_layer = 3
 collision_mask = 3
@@ -152,6 +158,7 @@ tile_data = PoolIntArray( 131075, 1, 0, 131076, 536870912, 1, 131077, 536870912,
 [node name="CharacterBoundary2" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
+editor/display_folded = true
 position = Vector2( 24.9662, 14.8358 )
 collision_layer = 3
 collision_mask = 3
@@ -166,6 +173,7 @@ shape = SubResource( 5 )
 [node name="CharacterBoundary3" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
+editor/display_folded = true
 position = Vector2( 24.9662, 14.8358 )
 collision_layer = 3
 collision_mask = 3
@@ -180,6 +188,7 @@ shape = SubResource( 6 )
 [node name="CharacterBoundary4" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
+editor/display_folded = true
 position = Vector2( 24.9662, 14.8358 )
 collision_layer = 3
 collision_mask = 3

@@ -110,7 +110,9 @@ margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
-text = "Use your Right mouse button to throw your hook. This will bring you towards most surfaces."
+text = "Use an old, rusty chain hook to quickly move around the farm. 
+
+Right click your mouse to throw your chain hook onto surfaces. "
 valign = 1
 autowrap = true
 
