@@ -2104,7 +2104,7 @@ points = PoolVector2Array( 0, 8.27588, 16, 8.27588, 16, 16, 0, 16 )
 11/z_index = 0
 
 [sub_resource type="Gradient" id=226]
-offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+07 )
+offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+007 )
 colors = PoolColorArray( 0.898039, 0.101961, 0.0470588, 1, 0.839216, 0.25098, 0.25098, 1, 0.980392, 0.968627, 0.968627, 1 )
 
 [sub_resource type="GradientTexture" id=227]

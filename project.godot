@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bumpkin Beserker"
-run/main_scene="res://scenes/TitleScreen.tscn"
+run/main_scene="res://scenes/Scene0.tscn"
 config/icon="res://icon.png"
 
 [display]

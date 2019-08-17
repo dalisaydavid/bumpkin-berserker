@@ -3,6 +3,8 @@ extends Node2D
 export(String, FILE, '*tscn') var plant_scene_path
 
 export var plant_speed = 35
+export var max_damage = 50.0
+export var max_particles = 20
 
 enum State {
 	empty,
@@ -15,6 +17,7 @@ var character: Node2D
 var progress_bar: Node
 var last_plant: Node2D
 var plants = []
+var damage = 0.0
 var farm_state
 
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +34,6 @@ func can_progress():
 			return false
 			
 	return true
-	
 
 func _process(delta):
 	
@@ -77,3 +79,18 @@ func plant():
 				add_child(last_plant)
 				plants.append(last_plant)
 				last_plant.global_position = $Area2D.global_position + rel
+
+func damage(damage_taken: float):
+	damage += damage_taken
+	if damage > max_damage:
+		farm_state = State.dead
+	
+	var step = max_damage / max_particles
+	if damage > step:
+		var new_amount = round(damage / step)
+		
+		if not $Particles2D.emitting:
+			$Particles2D.emitting = true
+		
+		if $Particles2D.amount != new_amount:
+			$Particles2D.amount = new_amount

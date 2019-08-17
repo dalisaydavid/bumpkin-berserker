@@ -75,22 +75,29 @@ func _process(delta):
 	if retarget:
 		retarget = false
 		var target = null
+		var max_offset = 1
 		
 		if $Earshot.overlaps_body(character_node.get_node('KinematicBody2D')):
 			target = character_node.get_node('KinematicBody2D')
 		else:
 			target = get_closest_planting_area()
+			max_offset = 80
 			
 			var plant = get_random_pickable_plant(target)
 			if plant:
+				max_offset = 20
 				target = plant
 		
 		if target:
-			var new_path = root_node.get_node('Navigation2D').get_simple_path(global_position, target.global_position)
+			if target.get_name() == 'KinematicBody2D':
+				move_speed = randi()%50+100
+			var offset = (randi() % max_offset) - (max_offset / 2)
+			var target_position = target.global_position + Vector2(offset, offset)
+			var new_path = root_node.get_node('Navigation2D').get_simple_path(global_position, target_position)
 			set_path(new_path)
 
 func get_random_pickable_plant(planting_area):
-	if not planting_area or planting_area.get_name() == 'Character':
+	if not planting_area or planting_area.get_parent().get_name() == 'Character':
 		return
 	
 	var plants = planting_area.plants.duplicate()
@@ -131,7 +138,7 @@ func get_closest_planting_area():
 			min_planting_area = planting_area
 	
 	if min_planting_area == null:
-		min_planting_area = root_node.get_node('Character')
+		min_planting_area = character_node.get_node('KinematicBody2D')
 	
 	return min_planting_area
 			
@@ -151,6 +158,9 @@ func _on_AttackArea_body_entered(body):
 	if body.get_parent().get_name() == 'Character':
 		bodies_in_area.append(body)
 		body.get_parent().damage(1)
+	if body.get_parent().get_name().begins_with('PlantingArea'):
+		print('???')
+		bodies_in_area.append(body)
 
 
 func _on_AttackArea_body_exited(body):
