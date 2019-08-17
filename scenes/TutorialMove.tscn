@@ -84,7 +84,7 @@ margin_bottom = -100.0
 rect_min_size = Vector2( 300, 250 )
 
 [node name="Label" type="Label" parent="TutorialArea"]
-margin_right = 780.0
+margin_right = 980.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "Movement"
@@ -92,19 +92,19 @@ align = 1
 
 [node name="CenterBox" type="HBoxContainer" parent="TutorialArea"]
 margin_top = 61.0
-margin_right = 780.0
-margin_bottom = 400.0
+margin_right = 980.0
+margin_bottom = 520.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TutorialArea/CenterBox"]
-margin_right = 388.0
-margin_bottom = 339.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="TutorialArea/CenterBox/VBoxContainer"]
-margin_right = 388.0
-margin_bottom = 167.0
+margin_right = 488.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
@@ -113,32 +113,32 @@ valign = 1
 autowrap = true
 
 [node name="WASD" type="TextureRect" parent="TutorialArea/CenterBox/VBoxContainer"]
-margin_top = 171.0
-margin_right = 388.0
-margin_bottom = 339.0
+margin_top = 231.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 stretch_mode = 6
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="TutorialArea/CenterBox"]
-margin_left = 392.0
-margin_right = 780.0
-margin_bottom = 339.0
+margin_left = 492.0
+margin_right = 980.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CharacterBoundary" type="StaticBody2D" parent="TutorialArea/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 106, 90 )
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="TutorialArea/CenterBox/VBoxContainer2/CharacterBoundary" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 175.186, 269.717 )
+position = Vector2( 176.352, 268.551 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 3 )
 
@@ -151,7 +151,7 @@ tile_data = PoolIntArray( 131075, 1, 0, 131076, 536870912, 1, 131077, 536870912,
 [node name="CharacterBoundary2" type="StaticBody2D" parent="TutorialArea/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 106.611, 91.815 )
 collision_layer = 3
 collision_mask = 3
 
@@ -165,7 +165,7 @@ shape = SubResource( 5 )
 [node name="CharacterBoundary3" type="StaticBody2D" parent="TutorialArea/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 108.943, 70.8207 )
 collision_layer = 3
 collision_mask = 3
 
@@ -186,22 +186,22 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="TutorialArea/CenterBox/VBoxContainer2/CharacterBoundary4" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 293.356, 163.254 )
+position = Vector2( 376.167, 236.734 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 7 )
 
 [node name="Character" parent="." instance=ExtResource( 6 )]
-position = Vector2( 737.145, 334.249 )
+position = Vector2( 925, 400 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
 
 [node name="RightButton" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
-margin_left = 924.061
-margin_top = 104.839
-margin_right = 999.061
-margin_bottom = 169.839
+margin_left = 1150.0
+margin_top = 95.0
+margin_right = 1225.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
 icon = ExtResource( 8 )
 scene_to_load = "res://scenes/TutorialShoot.tscn"

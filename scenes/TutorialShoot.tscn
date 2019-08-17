@@ -85,7 +85,7 @@ margin_bottom = -100.0
 rect_min_size = Vector2( 300, 250 )
 
 [node name="Label" type="Label" parent="Tutorial Area"]
-margin_right = 780.0
+margin_right = 980.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "The Shotgun"
@@ -93,19 +93,19 @@ align = 1
 
 [node name="CenterBox" type="HBoxContainer" parent="Tutorial Area"]
 margin_top = 61.0
-margin_right = 780.0
-margin_bottom = 400.0
+margin_right = 980.0
+margin_bottom = 520.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tutorial Area/CenterBox"]
-margin_right = 388.0
-margin_bottom = 339.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Tutorial Area/CenterBox/VBoxContainer"]
-margin_right = 388.0
-margin_bottom = 167.0
+margin_right = 488.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
@@ -114,32 +114,32 @@ valign = 1
 autowrap = true
 
 [node name="WASD" type="TextureRect" parent="Tutorial Area/CenterBox/VBoxContainer"]
-margin_top = 171.0
-margin_right = 388.0
-margin_bottom = 339.0
+margin_top = 231.0
+margin_right = 488.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 stretch_mode = 6
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Tutorial Area/CenterBox"]
-margin_left = 392.0
-margin_right = 780.0
-margin_bottom = 339.0
+margin_left = 492.0
+margin_right = 980.0
+margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CharacterBoundary" type="StaticBody2D" parent="Tutorial Area/CenterBox/VBoxContainer2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 24.9662, 14.8358 )
+position = Vector2( 106, 90 )
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 175.186, 269.717 )
+position = Vector2( 175.186, 268.357 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 3 )
 
@@ -159,7 +159,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary2" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 177.039, 37.6206 )
+position = Vector2( 257.301, 116.522 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 5 )
 
@@ -173,7 +173,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary3" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( -17.5942, 180.401 )
+position = Vector2( 65.3887, 237.537 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 6 )
 
@@ -187,21 +187,21 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Tutorial Area/CenterBox/VBoxContainer2/CharacterBoundary4" groups=[
 "TileMapHookable",
 ]]
-position = Vector2( 293.356, 163.254 )
+position = Vector2( 373.618, 250.318 )
 scale = Vector2( 1.1479, 2.25254 )
 shape = SubResource( 7 )
 
 [node name="Character" parent="." instance=ExtResource( 6 )]
-position = Vector2( 744.171, 337.757 )
+position = Vector2( 925, 400 )
 projectile_scene_path = "res://scenes/Projectile.tscn"
 hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 5000
 
 [node name="LeftButton" parent="." instance=ExtResource( 7 )]
-margin_left = 47.7182
-margin_top = 104.014
-margin_right = 122.718
-margin_bottom = 169.014
+margin_left = 50.0
+margin_top = 95.0
+margin_right = 125.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
 icon = ExtResource( 8 )
 scene_to_load = "res://scenes/TutorialMove.tscn"
@@ -211,10 +211,10 @@ repeat = true
 playback/repeat = true
 
 [node name="RightButton" parent="." instance=ExtResource( 7 )]
-margin_left = 943.88
-margin_top = 104.839
-margin_right = 1018.88
-margin_bottom = 169.839
+margin_left = 1150.0
+margin_top = 95.0
+margin_right = 1225.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 0 )
 icon = ExtResource( 9 )
 scene_to_load = "res://scenes/TutorialHook.tscn"

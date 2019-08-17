@@ -26,8 +26,6 @@ func _ready():
 	var width = scene_width / ratio
 	var height = scene_height / ratio
 	
-	#width = $Camera2D.get_
-	
 	var root_node = get_parent().get_parent()
 	character = root_node.get_node("Character").get_node("KinematicBody2D")
 	plots = root_node.get_node("PlantingAreas").get_children()
