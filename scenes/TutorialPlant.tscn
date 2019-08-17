@@ -118,6 +118,7 @@ rect_min_size = Vector2( 300, 250 )
 position = Vector2( 774.316, 383.516 )
 scale = Vector2( 0.713223, 0.978331 )
 z_index = 20
+plant_speed = 70
 
 [node name="Label" type="Label" parent="Tutorial Area"]
 margin_right = 980.0
@@ -144,9 +145,9 @@ margin_bottom = 459.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
-text = "You have 12 seeds on you and that replenish over time. Stand on a piece of tilled land for a short time to plant a seed!
+text = "Continue to care for your farm by growing and collecting plants.
 
-After the plant fully grows, you can harvest the plant for some credits!! Hooray for credits!!"
+Walk over plant areas to grow plants. Collect the plants when they're fully grown."
 valign = 1
 autowrap = true
 
