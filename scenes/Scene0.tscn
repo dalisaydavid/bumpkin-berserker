@@ -2718,7 +2718,7 @@ Unforuntately,
 No one survives 
 the alien invasion.
 
-Press 0 to restart."
+Press R to restart."
 align = 1
 
 [node name="PlantingAreas" type="Node" parent="."]

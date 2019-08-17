@@ -70,6 +70,8 @@ func handle_collect(body):
 			
 			if parent.get_name() == 'Character':
 				parent.collect_plant()
+			
+			get_parent().plants.erase(self)
 
 func _on_PickArea_body_entered(body):
 	handle_collect(body)

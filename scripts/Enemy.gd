@@ -8,6 +8,7 @@ var path = null
 var root_node
 var character_node
 var bodies_in_area = []
+var retarget = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,7 @@ func _ready():
 	move_speed = randi()%50+25
 	
 	$ContinuousAttackTimer.connect('timeout', self, 'attack_bodies_in_area')
+	$PathTimer.connect('timeout', self, 'reset_retarget')
 
 #func change_direction():
 #	var animation = 'Idle'
@@ -42,12 +44,14 @@ func attack_bodies_in_area():
 	for body in bodies_in_area:
 		body.get_parent().damage(1)
 
+func reset_retarget():
+	retarget = true
+
 func damage():
 	queue_free()
 #	is_dead = true
 #	$AnimationPlayer.play('Dead')
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	if is_dead:
 		return
@@ -68,27 +72,40 @@ func _process(delta):
 			start_point = path[0]
 			path.remove(0)
 	
-	
-	var target = null
+	if retarget:
+		retarget = false
+		var target = null
 		
-	var planting_area = get_closest_planting_area()
-	target = planting_area
+		if $Earshot.overlaps_body(character_node.get_node('KinematicBody2D')):
+			target = character_node.get_node('KinematicBody2D')
+		else:
+			target = get_closest_planting_area()
+			
+			var plant = get_random_pickable_plant(target)
+			if plant:
+				target = plant
 		
-	# @TODO: Make closest plant function performant :(
-	var closest_plant = get_closest_pickable_plant(planting_area)
-	if closest_plant:
-		target = closest_plant
-		
-	if $Earshot.overlaps_body(character_node.get_node('KinematicBody2D')):
-		target = character_node.get_node('KinematicBody2D')
+		if target:
+			var new_path = root_node.get_node('Navigation2D').get_simple_path(global_position, target.global_position)
+			set_path(new_path)
 
-	var new_path = root_node.get_node('Navigation2D').get_simple_path(global_position, target.global_position)
-	set_path(new_path)
+func get_random_pickable_plant(planting_area):
+	if not planting_area or planting_area.get_name() == 'Character':
+		return
+	
+	var plants = planting_area.plants.duplicate()
+	if plants.empty():
+		return null
+	else:
+		return plants[randi() % plants.size()]
 
 func get_closest_pickable_plant(planting_area):
+	if not planting_area:
+		return null
+	
 	var min_distance = INF
 	var min_plant = null
-	for plant in planting_area.get_children():
+	for plant in planting_area.plants:
 		if not plant.is_in_group('plant'):
 			continue
 			
@@ -105,10 +122,16 @@ func get_closest_planting_area():
 	var min_distance = INF
 	var min_planting_area = null
 	for planting_area in root_node.get_node('PlantingAreas').get_children():
+		if planting_area.farm_state == planting_area.State.dead:
+			continue
+		
 		var distance = global_position.distance_to(planting_area.global_position)
 		if distance < min_distance:
 			min_distance = distance
 			min_planting_area = planting_area
+	
+	if min_planting_area == null:
+		min_planting_area = root_node.get_node('Character')
 	
 	return min_planting_area
 			
