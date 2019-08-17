@@ -127,7 +127,7 @@ func damage(amount):
 	health -= amount
 
 	if health <= 0:
-		get_tree().quit()
+		get_parent().end_game()
 	
 	$KinematicBody2D/Sprite.modulate = Color(1, .5, .5, 1)
 	
