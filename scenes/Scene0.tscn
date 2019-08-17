@@ -2104,7 +2104,7 @@ points = PoolVector2Array( 0, 8.27588, 16, 8.27588, 16, 16, 0, 16 )
 11/z_index = 0
 
 [sub_resource type="Gradient" id=226]
-offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+007 )
+offsets = PoolRealArray( 0.428571, 0.640693, 3.4603e+07 )
 colors = PoolColorArray( 0.898039, 0.101961, 0.0470588, 1, 0.839216, 0.25098, 0.25098, 1, 0.980392, 0.968627, 0.968627, 1 )
 
 [sub_resource type="GradientTexture" id=227]
@@ -2528,6 +2528,7 @@ font_data = ExtResource( 9 )
 script = ExtResource( 1 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
+editor/display_folded = true
 
 [node name="TileMapTerrain" type="TileMap" parent="Navigation2D"]
 tile_set = SubResource( 43 )
@@ -2600,6 +2601,7 @@ hook_scene_path = "res://scenes/Hook.tscn"
 movement_speed = 6000
 
 [node name="Camera2D" type="Camera2D" parent="."]
+editor/display_folded = true
 position = Vector2( 653.995, 227.034 )
 current = true
 zoom = Vector2( 0.35, 0.35 )
@@ -2620,6 +2622,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Minimap" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
@@ -2722,6 +2725,7 @@ Press R to restart."
 align = 1
 
 [node name="PlantingAreas" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="PlantingArea" parent="PlantingAreas" instance=ExtResource( 14 )]
 position = Vector2( 375.237, 216.224 )
@@ -2743,18 +2747,27 @@ volume_db = -15.0
 script = ExtResource( 16 )
 
 [node name="OverlayColor" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2( -0.762085, 0.761993 )
 color = Color( 0.227451, 0.219608, 0.211765, 1 )
 
 [node name="EnemySpawn0" parent="." instance=ExtResource( 17 )]
 position = Vector2( 51.1174, 673.899 )
+min_spawn_time = 20
+max_spawn_time = 45
 
 [node name="EnemySpawn1" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1242.3, 9.23391 )
+min_spawn_time = 20
+max_spawn_time = 45
 
 [node name="EnemySpawn2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1234.03, 676.248 )
+min_spawn_time = 20
+max_spawn_time = 45
 
 [node name="EnemySpawn3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 50.2057, 9.74094 )
+min_spawn_time = 20
+max_spawn_time = 45
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]

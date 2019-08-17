@@ -1,11 +1,13 @@
 extends Position2D
 
 export(String, FILE, '*tscn') var enemy_scene_path
-
+export var min_spawn_time = 5
+export var max_spawn_time = 20
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.wait_time = 5
+	$Timer.wait_time = randi()%max_spawn_time+min_spawn_time
 	$Timer.connect('timeout', self, 'send_ufo_beam')
+	$Timer.start()
 	$AnimationPlayer.play('Float')
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

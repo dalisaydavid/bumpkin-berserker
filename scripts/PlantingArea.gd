@@ -84,6 +84,7 @@ func damage(damage_taken: float):
 	damage += damage_taken
 	if damage > max_damage:
 		farm_state = State.dead
+		$DeadSprite.visible = true
 	
 	var step = max_damage / max_particles
 	if damage > step:
