@@ -36,33 +36,33 @@ attenuation = 0.0507658
 [node name="Menu" type="VBoxContainer" parent="."]
 margin_left = 120.0
 margin_top = 80.0
-margin_right = 904.0
-margin_bottom = 540.0
+margin_right = 1160.0
+margin_bottom = 640.0
 
 [node name="Label" type="Label" parent="Menu"]
-margin_right = 789.0
+margin_right = 1040.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "Bumpking Berserker"
 
 [node name="CenterRow" type="HBoxContainer" parent="Menu"]
 margin_top = 61.0
-margin_right = 789.0
-margin_bottom = 431.0
+margin_right = 1040.0
+margin_bottom = 531.0
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
-margin_right = 392.0
-margin_bottom = 370.0
+margin_right = 518.0
+margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 35
 alignment = 1
 
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 4 )]
-margin_top = 60.0
-margin_right = 392.0
-margin_bottom = 120.0
+margin_top = 110.0
+margin_right = 518.0
+margin_bottom = 170.0
 scene_to_load = "res://scenes/TutorialMove.tscn"
 
 [node name="NewShotgunIcon" type="TextureRect" parent="Menu/CenterRow/Buttons/NewGameButton"]
@@ -76,9 +76,9 @@ expand = true
 script = ExtResource( 6 )
 
 [node name="CreditsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 7 )]
-margin_top = 155.0
-margin_right = 392.0
-margin_bottom = 215.0
+margin_top = 205.0
+margin_right = 518.0
+margin_bottom = 265.0
 align = 0
 scene_to_load = "res://scenes/credits.tscn"
 
@@ -94,9 +94,9 @@ expand = true
 script = ExtResource( 8 )
 
 [node name="ExitGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 9 )]
-margin_top = 250.0
-margin_right = 392.0
-margin_bottom = 310.0
+margin_top = 300.0
+margin_right = 518.0
+margin_bottom = 360.0
 custom_fonts/font = SubResource( 2 )
 
 [node name="ExitShotgunIcon" type="TextureRect" parent="Menu/CenterRow/Buttons/ExitGameButton"]
@@ -111,22 +111,22 @@ expand = true
 script = ExtResource( 10 )
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
-margin_left = 396.0
-margin_right = 789.0
-margin_bottom = 370.0
+margin_left = 522.0
+margin_right = 1040.0
+margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="somepng" type="TextureRect" parent="Menu/CenterRow/CenterContainer"]
-margin_left = 196.0
-margin_top = 185.0
-margin_right = 196.0
-margin_bottom = 185.0
+margin_left = 259.0
+margin_top = 235.0
+margin_right = 259.0
+margin_bottom = 235.0
 
 [node name="VersionLabel" type="Label" parent="Menu"]
-margin_top = 435.0
-margin_right = 789.0
-margin_bottom = 460.0
+margin_top = 535.0
+margin_right = 1040.0
+margin_bottom = 560.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Version 1.0  Team Iron IV"
