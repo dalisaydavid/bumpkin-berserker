@@ -118,6 +118,7 @@ rect_min_size = Vector2( 300, 250 )
 position = Vector2( 774.316, 383.516 )
 scale = Vector2( 0.713223, 0.978331 )
 z_index = 20
+plant_speed = 70
 
 [node name="Label" type="Label" parent="Tutorial Area"]
 margin_right = 980.0
