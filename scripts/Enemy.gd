@@ -7,6 +7,7 @@ var is_dead = false
 var path = null 
 var root_node
 var character_node
+var bodies_in_area = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,8 @@ func _ready():
 	character_node = root_node.get_node('Character')
 	
 	move_speed = randi()%50+25
+	
+	$ContinuousAttackTimer.connect('timeout', self, 'attack_bodies_in_area')
 
 #func change_direction():
 #	var animation = 'Idle'
@@ -34,6 +37,10 @@ func _ready():
 #	else:
 #		animation = 'walking_side'
 #	$AnimationPlayer.play(animation)
+
+func attack_bodies_in_area():
+	for body in bodies_in_area:
+		body.get_parent().damage(1)
 
 func damage():
 	queue_free()
@@ -119,4 +126,12 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_AttackArea_body_entered(body):
 	if body.get_parent().get_name() == 'Character':
+		bodies_in_area.append(body)
 		body.get_parent().damage(1)
+
+
+func _on_AttackArea_body_exited(body):
+	var index = bodies_in_area.find(body)
+	if index != -1:
+		bodies_in_area.remove(index)
+		
