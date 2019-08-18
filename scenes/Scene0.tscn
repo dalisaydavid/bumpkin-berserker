@@ -2753,21 +2753,21 @@ color = Color( 0.227451, 0.219608, 0.211765, 1 )
 
 [node name="EnemySpawn0" parent="." instance=ExtResource( 17 )]
 position = Vector2( 51.1174, 673.899 )
-min_spawn_time = 20
-max_spawn_time = 45
+min_spawn_time = 15
+max_spawn_time = 30
 
 [node name="EnemySpawn1" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1242.3, 9.23391 )
-min_spawn_time = 20
-max_spawn_time = 45
+min_spawn_time = 15
+max_spawn_time = 30
 
 [node name="EnemySpawn2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1234.03, 676.248 )
-min_spawn_time = 20
-max_spawn_time = 45
+min_spawn_time = 15
+max_spawn_time = 30
 
 [node name="EnemySpawn3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 50.2057, 9.74094 )
-min_spawn_time = 20
-max_spawn_time = 45
+min_spawn_time = 15
+max_spawn_time = 30
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_ShakeTimer_timeout"]
